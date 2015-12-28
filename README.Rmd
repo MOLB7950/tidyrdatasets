@@ -1,0 +1,128 @@
+---
+title: "Tidy datasets"
+author: "Jay Hesselberth"
+date: "December 27, 2015"
+output:
+  md_document:
+    variant: markdown_github
+    toc: true
+    toc_depth: 2
+---
+
+Tidy up all of the R builtin datasets.
+
+```{r library, message=FALSE, warning=FALSE}
+library(tidyr)
+library(dplyr)
+library(stringr)
+library(lubridate)
+
+knitr::opts_chunk$set(comment='#>')
+```
+
+```{r ability.cov}
+ability.cov_tidy <- ability.cov %>%
+  as.data.frame() %>%
+  select(-n.obs, -center) %>%
+  mutate(test = rownames(.)) %>%
+  gather(cov, value, -test) %>%
+  tbl_df()
+
+ability.cov_tidy 
+```
+
+```{r airmiles}
+airmiles_tidy <- airmiles %>%
+  as.data.frame() %>%
+  setNames('airmiles') %>%
+  mutate(year = time(airmiles)) %>%
+  tbl_df()
+
+airmiles_tidy
+```
+
+```{r AirPassengers}
+# gawd time series are awful ...
+# from http://stackoverflow.com/questions/5331901/transforming-a-ts-in-a-data-frame-and-back
+
+dmn <- list(month.abb, unique(floor(time(AirPassengers))))
+AirPassengers_df <- as.data.frame(matrix(AirPassengers, 12, dimnames = dmn))
+
+AirPassengers_tidy <- AirPassengers_df %>%
+  mutate(month = rownames(.)) %>%
+  gather(year, value, -month) %>%
+  tbl_df()
+
+AirPassengers_tidy
+```
+
+```{r austres}
+# Figure out how to get the 'Qtr1' ... colnames
+```
+
+```{r beavers}
+# Combine the beaver1 and beaver2 datasets ...
+beaver1_tidy <- beaver1 %>%
+  mutate(obs = seq_len(n())) %>%
+  gather(key, value, -obs) %>%
+  mutate(beaver = 1)
+
+beaver2_tidy <- beaver2 %>%
+  mutate(obs = seq_len(n())) %>%
+  gather(key, value, -obs) %>%
+  mutate(beaver = 2)
+
+beavers_tidy <- rbind_list(beaver1_tidy, beaver2_tidy)
+
+beavers_tidy
+```
+
+```{r BOD}
+BOD_tidy <- BOD %>%
+  mutate(obs = seq_len(n())) %>%
+  gather(key, value, -obs) %>%
+  tbl_df
+
+BOD_tidy
+```
+
+```{r cars}
+cars_tidy <- cars %>%
+  mutate(obs = seq_len(n())) %>%
+  gather(key, value, -obs) %>%
+  tbl_df
+
+cars_tidy
+```
+
+```{r ChickWeight, warning=FALSE}
+ChickWeight_tidy <- ChickWeight %>%
+  gather(key, value, -Chick, convert = TRUE) %>%
+  tbl_df
+
+ChickWeight_tidy
+```
+
+```{r chickwts}
+# Already tidy
+```
+
+```{r CO2}
+# Already tidy
+```
+
+```{r DNase}
+# Already tidy
+```
+
+```{r esoph}
+# Already tidy
+```
+
+```{r faithful}
+# Already tidy
+```
+
+```{r Formaldehyde}
+# Already tidy
+```
