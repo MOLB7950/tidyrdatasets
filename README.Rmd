@@ -14,10 +14,15 @@ Tidy up all of the R builtin datasets.
 ```{r library, message=FALSE, warning=FALSE}
 library(tidyr)
 library(dplyr)
-library(stringr)
-library(lubridate)
 
 knitr::opts_chunk$set(comment='#>')
+
+format_strs <- function(strings, sep='.', ...) {
+  strings %>%
+    stringr::str_to_lower() %>%
+    stringr::str_replace_all(' ', sep)
+}
+
 ```
 
 ```{r ability.cov}
@@ -46,12 +51,11 @@ airmiles_tidy
 # from http://stackoverflow.com/questions/5331901/transforming-a-ts-in-a-data-frame-and-back
 
 dmn <- list(month.abb, unique(floor(time(AirPassengers))))
-AirPassengers_df <- as.data.frame(matrix(AirPassengers, 12, dimnames = dmn))
+AirPassengers_df <- tbl_df(data.frame(matrix(AirPassengers, 12, dimnames = dmn)))
 
 AirPassengers_tidy <- AirPassengers_df %>%
   mutate(month = rownames(.)) %>%
-  gather(year, value, -month) %>%
-  tbl_df()
+  gather(year, value, -month)
 
 AirPassengers_tidy
 ```
@@ -65,12 +69,12 @@ AirPassengers_tidy
 beaver1_tidy <- beaver1 %>%
   mutate(obs = seq_len(n())) %>%
   gather(key, value, -obs) %>%
-  mutate(beaver = 1)
+  mutate(beaver = '1')
 
 beaver2_tidy <- beaver2 %>%
   mutate(obs = seq_len(n())) %>%
   gather(key, value, -obs) %>%
-  mutate(beaver = 2)
+  mutate(beaver = '2')
 
 beavers_tidy <- rbind_list(beaver1_tidy, beaver2_tidy)
 
@@ -78,19 +82,17 @@ beavers_tidy
 ```
 
 ```{r BOD}
-BOD_tidy <- BOD %>%
+BOD_tidy <- BOD %>% tbl_df %>%
   mutate(obs = seq_len(n())) %>%
-  gather(key, value, -obs) %>%
-  tbl_df
+  gather(key, value, -obs)
 
 BOD_tidy
 ```
 
 ```{r cars}
-cars_tidy <- cars %>%
+cars_tidy <- cars %>% tbl_df %>%
   mutate(obs = seq_len(n())) %>%
-  gather(key, value, -obs) %>%
-  tbl_df
+  gather(key, value, -obs)
 
 cars_tidy
 ```
@@ -104,25 +106,31 @@ ChickWeight_tidy
 ```
 
 ```{r chickwts}
-# Already tidy
+# `chickwts` already tidy
 ```
 
 ```{r CO2}
-# Already tidy
+# `CO2` already tidy
 ```
 
 ```{r DNase}
-# Already tidy
+# `DNase` already tidy
 ```
 
 ```{r esoph}
-# Already tidy
+# `esoph` already tidy
 ```
 
 ```{r faithful}
-# Already tidy
+# `faithful` already tidy
 ```
 
 ```{r Formaldehyde}
-# Already tidy
+# `Formaldehyde` already tidy
+```
+
+```{r mtcars}
+mtcars_tidy <- mtcars %>%
+  mutate(car = format_strs(rownames(.))) %>% 
+  gather(key, value, -car)   
 ```
