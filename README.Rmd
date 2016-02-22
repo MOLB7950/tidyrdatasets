@@ -27,7 +27,7 @@ format_strs <- function(strings, sep='.', ...) {
 
 ```
 
-### ability
+## ability
 
 ```{r ability.cov}
 ability.cov_tidy <- ability.cov %>%
@@ -40,7 +40,7 @@ ability.cov_tidy <- ability.cov %>%
 ability.cov_tidy 
 ```
 
-### airmiles
+## airmiles
 
 ```{r airmiles}
 airmiles_tidy <- airmiles %>%
@@ -52,7 +52,7 @@ airmiles_tidy <- airmiles %>%
 airmiles_tidy
 ```
 
-### AirPassengers
+## AirPassengers
 
 ```{r AirPassengers}
 # gawd time series are awful ...
@@ -68,13 +68,13 @@ AirPassengers_tidy <- AirPassengers_df %>%
 AirPassengers_tidy
 ```
 
-### austres
+## austres
 
 ```{r austres}
 # Figure out how to get the 'Qtr1' ... colnames
 ```
 
-### beavers
+## beavers
 
 ```{r beavers}
 # Combine the beaver1 and beaver2 datasets ...
@@ -93,7 +93,7 @@ beavers_tidy <- rbind_list(beaver1_tidy, beaver2_tidy)
 beavers_tidy
 ```
 
-### BOD
+## BOD
 
 ```{r BOD}
 BOD_tidy <- BOD %>% tbl_df %>%
@@ -103,7 +103,7 @@ BOD_tidy <- BOD %>% tbl_df %>%
 BOD_tidy
 ```
 
-### cars
+## cars
 
 ```{r cars}
 cars_tidy <- cars %>% tbl_df %>%
@@ -113,7 +113,7 @@ cars_tidy <- cars %>% tbl_df %>%
 cars_tidy
 ```
 
-### ChickWeight
+## ChickWeight
 
 ```{r ChickWeight, warning=FALSE}
 ChickWeight_tidy <- ChickWeight %>%
@@ -123,46 +123,48 @@ ChickWeight_tidy <- ChickWeight %>%
 ChickWeight_tidy
 ```
 
-### chickwts
+## chickwts
 
 ```{r chickwts}
 # `chickwts` already tidy
 ```
 
-### CO2
+## CO2
 
 ```{r CO2}
 # `CO2` already tidy
 ```
 
-### DNase
+## DNase
 
 ```{r DNase}
 # `DNase` already tidy
 ```
 
-### esoph
+## esoph
 
 ```{r esoph}
 # `esoph` already tidy
 ```
 
-### faithful
+## faithful
 
 ```{r faithful}
 # `faithful` already tidy
 ```
 
-### Formaldehyde
+## Formaldehyde
 
 ```{r Formaldehyde}
 # `Formaldehyde` already tidy
 ```
 
-### mtcars
+## mtcars
 
 ```{r mtcars}
 mtcars_tidy <- mtcars %>%
   mutate(car = format_strs(rownames(.))) %>% 
-  gather(key, value, -car)   
+  gather(key, value, -car) %>% tbl_df
+
+mtcars_tidy
 ```

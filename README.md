@@ -33,7 +33,8 @@ format_strs <- function(strings, sep='.', ...) {
 }
 ```
 
-### ability
+ability
+-------
 
 ``` r
 ability.cov_tidy <- ability.cov %>%
@@ -62,7 +63,8 @@ ability.cov_tidy
     #> 10    maze cov.picture  1.782
     #> ..     ...         ...    ...
 
-### airmiles
+airmiles
+--------
 
 ``` r
 airmiles_tidy <- airmiles %>%
@@ -90,7 +92,8 @@ airmiles_tidy
     #> 10     5948  1946
     #> ..      ...   ...
 
-### AirPassengers
+AirPassengers
+-------------
 
 ``` r
 # gawd time series are awful ...
@@ -122,13 +125,15 @@ AirPassengers_tidy
     #> 10   Oct X1949   119
     #> ..   ...   ...   ...
 
-### austres
+austres
+-------
 
 ``` r
 # Figure out how to get the 'Qtr1' ... colnames
 ```
 
-### beavers
+beavers
+-------
 
 ``` r
 # Combine the beaver1 and beaver2 datasets ...
@@ -167,7 +172,8 @@ beavers_tidy
     #> 10    10   day   346      1
     #> ..   ...   ...   ...    ...
 
-### BOD
+BOD
+---
 
 ``` r
 BOD_tidy <- BOD %>% tbl_df %>%
@@ -194,7 +200,8 @@ BOD_tidy
     #> 11     5 demand  15.6
     #> 12     6 demand  19.8
 
-### cars
+cars
+----
 
 ``` r
 cars_tidy <- cars %>% tbl_df %>%
@@ -220,7 +227,8 @@ cars_tidy
     #> 10    10 speed    11
     #> ..   ...   ...   ...
 
-### ChickWeight
+ChickWeight
+-----------
 
 ``` r
 ChickWeight_tidy <- ChickWeight %>%
@@ -246,46 +254,71 @@ ChickWeight_tidy
     #> 10      1 weight   171
     #> ..    ...    ...   ...
 
-### chickwts
+chickwts
+--------
 
 ``` r
 # `chickwts` already tidy
 ```
 
-### CO2
+CO2
+---
 
 ``` r
 # `CO2` already tidy
 ```
 
-### DNase
+DNase
+-----
 
 ``` r
 # `DNase` already tidy
 ```
 
-### esoph
+esoph
+-----
 
 ``` r
 # `esoph` already tidy
 ```
 
-### faithful
+faithful
+--------
 
 ``` r
 # `faithful` already tidy
 ```
 
-### Formaldehyde
+Formaldehyde
+------------
 
 ``` r
 # `Formaldehyde` already tidy
 ```
 
-### mtcars
+mtcars
+------
 
 ``` r
 mtcars_tidy <- mtcars %>%
   mutate(car = format_strs(rownames(.))) %>% 
-  gather(key, value, -car)   
+  gather(key, value, -car) %>% tbl_df
+
+mtcars_tidy
 ```
+
+    #> Source: local data frame [352 x 3]
+    #> 
+    #>                  car   key value
+    #>                (chr) (chr) (dbl)
+    #> 1          mazda.rx4   mpg  21.0
+    #> 2      mazda.rx4.wag   mpg  21.0
+    #> 3         datsun.710   mpg  22.8
+    #> 4     hornet.4.drive   mpg  21.4
+    #> 5  hornet.sportabout   mpg  18.7
+    #> 6            valiant   mpg  18.1
+    #> 7         duster.360   mpg  14.3
+    #> 8          merc.240d   mpg  24.4
+    #> 9           merc.230   mpg  22.8
+    #> 10          merc.280   mpg  19.2
+    #> ..               ...   ...   ...
