@@ -168,3 +168,12 @@ mtcars_tidy <- mtcars %>%
 
 mtcars_tidy
 ```
+
+```{r WorldPhones}
+WorldPhones_tidy <- WorldPhones %>%
+  as.data.frame() %>%
+  mutate(year = rownames(.)) %>%
+  gather(continent, value, -year) %>% tbl_df
+
+WorldPhones_tidy
+```

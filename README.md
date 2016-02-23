@@ -322,3 +322,28 @@ mtcars_tidy
     #> 9           merc.230   mpg  22.8
     #> 10          merc.280   mpg  19.2
     #> ..               ...   ...   ...
+
+``` r
+WorldPhones_tidy <- WorldPhones %>%
+  as.data.frame() %>%
+  mutate(year = rownames(.)) %>%
+  gather(continent, value, -year) %>% tbl_df
+
+WorldPhones_tidy
+```
+
+    #> Source: local data frame [49 x 3]
+    #> 
+    #>     year continent value
+    #>    (chr)     (chr) (dbl)
+    #> 1   1951    N.Amer 45939
+    #> 2   1956    N.Amer 60423
+    #> 3   1957    N.Amer 64721
+    #> 4   1958    N.Amer 68484
+    #> 5   1959    N.Amer 71799
+    #> 6   1960    N.Amer 76036
+    #> 7   1961    N.Amer 79831
+    #> 8   1951    Europe 21574
+    #> 9   1956    Europe 29990
+    #> 10  1957    Europe 32510
+    #> ..   ...       ...   ...
