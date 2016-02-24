@@ -68,10 +68,42 @@ AirPassengers_tidy <- AirPassengers_df %>%
 AirPassengers_tidy
 ```
 
+## airquality
+
+```{r airquality}
+
+
+```
+
 ## austres
 
 ```{r austres}
 # Figure out how to get the 'Qtr1' ... colnames
+
+
+```
+
+## attenu
+
+```{r attenu}
+# `attenu` already tidy
+
+#attenu_tidy <- attenu %>%
+#  mutate(obs = seq_len(n())) %>%
+ # gather(varible, value, -obs) %>%
+  #tbl_df
+#attenu_tidy
+
+```
+
+## attitude
+
+```{r attitude}
+attitude_tidy <- attitude %>%
+  mutate(dept = seq_len(n())) %>%
+  gather(varible, value, -dept) %>%
+  tbl_df
+attitude_tidy
 ```
 
 ## beavers
@@ -159,12 +191,215 @@ ChickWeight_tidy
 # `Formaldehyde` already tidy
 ```
 
+## freeny
+
+```{r freeny}
+freeny_tidy <- freeny %>%
+  tbl_df %>%
+  mutate(year = seq(1962.25, 1971.75, by = 0.25)) %>%
+  gather (key, value, -year)
+freeny_tidy
+```
+
+## Indometh
+```{r Indometh}
+Indometh_tidy <- Indometh %>%
+  mutate(obs = seq_len(n())) %>%
+  gather(key, value, -obs)
+Indometh_tidy
+```
+
+### infert
+```{r infert}
+infert_tidy <- infert %>%
+  mutate(subject = seq_len(n())) %>%
+  gather(key, value, -subject)
+infert_tidy
+```
+
+## InsectSprays
+```{r InsectSprays}
+# `InsectSprays` already tidy
+```
+
+## iris
+```{r iris}
+iris_tidy <- iris %>%
+  mutate(plantnum = seq_len(n())) %>%
+  gather(measurement, value, -plantnum)
+iris_tidy
+```
+
+## LifeCycleSavings
+```{r LifeCycleSavings}
+# LifeCycleSavings is already tidy
+```
+
+## Loblolly
+```{r Loblolly}
+# Loblolly is already tidy
+```
+
+## longley
+```{r longley}
+# longley is already tidy, unless the duplicate column will cause an issue?
+```
+
+## morley
+```{r morley}
+# morley is already tidy
+```
+
 ## mtcars
-
 ```{r mtcars}
-mtcars_tidy <- mtcars %>%
-  mutate(car = format_strs(rownames(.))) %>% 
-  gather(key, value, -car) %>% tbl_df
 
-mtcars_tidy
+```
+
+## npk
+```{r npk}
+# npk is already tidy
+```
+
+## Orange
+```{r Orange}
+Orange_tidy <- Orange %>%
+  gather(measurement, value, -Tree)
+Orange_tidy
+```
+
+## OrchardSprays
+```{r OrchardSrays}
+```
+
+## PlantGrowth
+```{r PlantGrowth}
+PlantGrowth_tidy <- PlantGrowth %>%
+  mutate(obs = seq_len(n())) %>%
+  gather(key, value, -obs)
+PlantGrowth_tidy
+```
+
+## pressure
+```{r pressure}
+pressure_tidy <- pressure %>%
+  mutate(obs = seq_len(n())) %>%
+  gather(key, value, -obs)
+pressure_tidy
+```
+
+## Puromycin
+```{r Puromycin}
+```
+
+## quakes
+```{r quakes}
+```
+
+## randu
+```{r randu}
+randu_tidy <- randu %>%
+  mutate(obs = seq_len(n())) %>%
+  gather(key, value, -obs) 
+randu_tidy
+```
+
+## rock
+```{r rock}
+rock_tidy <- rock %>%
+  mutate(obs = seq_len(n())) %>%
+  gather(key, value, -obs) 
+rock_tidy
+```
+
+## sleep
+```{r sleep}
+```
+
+## stackloss
+```{r stackloss}
+stackloss_tidy <- stackloss %>%
+  mutate(obs = seq_len(n())) %>%
+  gather(key, value, -obs)
+stackloss_tidy
+```
+
+## swiss
+```{r swiss}
+swiss_tidy <- swiss %>%
+  mutate(region = rownames(.)) %>%
+  gather(key, value, -region)
+swiss_tidy
+```
+
+## Theoph
+```{r Theoph}
+```
+
+## ToothGrowth
+```{r ToothGrowth}
+```
+
+## trees
+```{r trees}
+trees_tidy <- trees %>%
+  mutate(tree = seq_len(n())) %>%
+  gather(key, value, -tree)
+trees_tidy
+```
+
+## USArrests
+```{r USArrests}
+USArrests_tidy <- USArrests %>%
+  mutate(state = rownames(.)) %>%
+  gather(key, value, -state)
+USArrests_tidy
+```
+
+## USJudgeRatings
+```{r USJudgeRatings}
+USJudgeRatings_tidy <- USJudgeRatings %>%
+  mutate(judge= rownames(.)) %>%
+  gather(key, value, -judge)
+USJudgeRatings_tidy
+```
+
+## USPersonalExpenditure
+```{r USPersonalExpenditure}
+USPersonalExpenditure_tidy <- USPersonalExpenditure %>%
+  as.data.frame() %>%
+  mutate(group = rownames(.)) %>%
+  gather(year, expense, -group)
+USPersonalExpenditure_tidy
+```
+
+## VADeaths
+```{r VADeaths}
+VADeaths_tidy <- VADeaths %>%
+  as.data.frame() %>%
+  mutate(age = rownames(.)) %>%
+  gather(demographic, deaths, -age)
+VADeaths_tidy
+```
+
+## volcano
+```{r volcano}
+```
+
+## warpbreaks
+```{r warpbreaks}
+
+```
+
+## women
+```{r women}
+```
+
+## WorldPhones
+
+```{r WorldPhones}
+WPs_tidy <- WorldPhones %>% 
+  as.data.frame() %>%
+  mutate(year = rownames(.)) %>%
+  gather(continent, value, -year) 
+WPs_tidy
 ```
