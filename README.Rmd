@@ -205,7 +205,8 @@ freeny_tidy
 ```{r Indometh}
 Indometh_tidy <- Indometh %>%
   mutate(obs = seq_len(n())) %>%
-  gather(key, value, -obs)
+  gather(key, value, -obs) %>%
+  tbl_df()
 Indometh_tidy
 ```
 
@@ -213,7 +214,8 @@ Indometh_tidy
 ```{r infert}
 infert_tidy <- infert %>%
   mutate(subject = seq_len(n())) %>%
-  gather(key, value, -subject)
+  gather(key, value, -subject) %>%
+  tbl_df()
 infert_tidy
 ```
 
@@ -226,7 +228,8 @@ infert_tidy
 ```{r iris}
 iris_tidy <- iris %>%
   mutate(plantnum = seq_len(n())) %>%
-  gather(measurement, value, -plantnum)
+  gather(measurement, value, -plantnum) %>%
+  tbl_df()
 iris_tidy
 ```
 
@@ -263,7 +266,8 @@ iris_tidy
 ## Orange
 ```{r Orange}
 Orange_tidy <- Orange %>%
-  gather(measurement, value, -Tree)
+  gather(measurement, value, -Tree) %>%
+  tbl_df()
 Orange_tidy
 ```
 
@@ -275,7 +279,8 @@ Orange_tidy
 ```{r PlantGrowth}
 PlantGrowth_tidy <- PlantGrowth %>%
   mutate(obs = seq_len(n())) %>%
-  gather(key, value, -obs)
+  gather(key, value, -obs) %>%
+  tbl_df()
 PlantGrowth_tidy
 ```
 
@@ -283,7 +288,8 @@ PlantGrowth_tidy
 ```{r pressure}
 pressure_tidy <- pressure %>%
   mutate(obs = seq_len(n())) %>%
-  gather(key, value, -obs)
+  gather(key, value, -obs) %>%
+  tbl_df()
 pressure_tidy
 ```
 
@@ -299,7 +305,8 @@ pressure_tidy
 ```{r randu}
 randu_tidy <- randu %>%
   mutate(obs = seq_len(n())) %>%
-  gather(key, value, -obs) 
+  gather(key, value, -obs) %>%
+  tbl_df()
 randu_tidy
 ```
 
@@ -307,7 +314,8 @@ randu_tidy
 ```{r rock}
 rock_tidy <- rock %>%
   mutate(obs = seq_len(n())) %>%
-  gather(key, value, -obs) 
+  gather(key, value, -obs) %>%
+  tbl_df()
 rock_tidy
 ```
 
@@ -319,7 +327,8 @@ rock_tidy
 ```{r stackloss}
 stackloss_tidy <- stackloss %>%
   mutate(obs = seq_len(n())) %>%
-  gather(key, value, -obs)
+  gather(key, value, -obs) %>%
+  tbl_df()
 stackloss_tidy
 ```
 
@@ -327,7 +336,8 @@ stackloss_tidy
 ```{r swiss}
 swiss_tidy <- swiss %>%
   mutate(region = rownames(.)) %>%
-  gather(key, value, -region)
+  gather(key, value, -region) %>%
+  tbl_df()
 swiss_tidy
 ```
 
@@ -343,7 +353,8 @@ swiss_tidy
 ```{r trees}
 trees_tidy <- trees %>%
   mutate(tree = seq_len(n())) %>%
-  gather(key, value, -tree)
+  gather(key, value, -tree) %>%
+  tbl_df()
 trees_tidy
 ```
 
@@ -351,7 +362,8 @@ trees_tidy
 ```{r USArrests}
 USArrests_tidy <- USArrests %>%
   mutate(state = rownames(.)) %>%
-  gather(key, value, -state)
+  gather(key, value, -state) %>%
+  tbl_df()
 USArrests_tidy
 ```
 
@@ -359,7 +371,8 @@ USArrests_tidy
 ```{r USJudgeRatings}
 USJudgeRatings_tidy <- USJudgeRatings %>%
   mutate(judge= rownames(.)) %>%
-  gather(key, value, -judge)
+  gather(key, value, -judge) %>%
+  tbl_df()
 USJudgeRatings_tidy
 ```
 
@@ -368,7 +381,8 @@ USJudgeRatings_tidy
 USPersonalExpenditure_tidy <- USPersonalExpenditure %>%
   as.data.frame() %>%
   mutate(group = rownames(.)) %>%
-  gather(year, expense, -group)
+  gather(year, expense, -group) %>%
+  tbl_df()
 USPersonalExpenditure_tidy
 ```
 
@@ -377,7 +391,8 @@ USPersonalExpenditure_tidy
 VADeaths_tidy <- VADeaths %>%
   as.data.frame() %>%
   mutate(age = rownames(.)) %>%
-  gather(demographic, deaths, -age)
+  gather(demographic, deaths, -age) %>%
+  tbl_df()
 VADeaths_tidy
 ```
 
@@ -400,6 +415,7 @@ VADeaths_tidy
 WPs_tidy <- WorldPhones %>% 
   as.data.frame() %>%
   mutate(year = rownames(.)) %>%
-  gather(continent, value, -year) 
+  gather(continent, value, -year) %>%
+  tbl_df()
 WPs_tidy
 ```
