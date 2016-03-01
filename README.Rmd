@@ -16,6 +16,7 @@ Tidy up all of the R builtin datasets.
 ```{r library, message=FALSE, warning=FALSE}
 library(tidyr)
 library(dplyr)
+library(tidytime)
 
 knitr::opts_chunk$set(comment='#>')
 
@@ -75,7 +76,7 @@ AirPassengers_tidy
 
 ```
 
-## anscome
+## anscombe
 
 ```{r anscombe}
 anscombe_tidy <- anscombe %>%
@@ -90,9 +91,10 @@ anscombe_tidy <- anscombe %>%
 ## austres
 
 ```{r austres}
-# Figure out how to get the 'Qtr1' ... colnames
-
-
+austres_tidy <- austres %>%
+  tidytime() %>%
+  setNames(c("year", "series","residents"))
+austres_tidy
 ```
 
 ## attenu
@@ -130,15 +132,17 @@ beavers_tidy
 ## BJsales
 
 ```{r BJsales}
-
-
+BJsales_tidy <- BJsales %>%
+  tidytime() 
+BJsales_tidy
 ```
 
 ## BJsales.lead
 
 ```{r BJsales.lead}
-
-
+BJsales.lead_tidy <- BJsales.lead%>%
+  tidytime() 
+BJsales.lead_tidy
 ```
 
 ## BOD
@@ -178,22 +182,29 @@ ChickWeight_tidy
 ## co2
 
 ```{r co2}
-
-
+co2_tidy <- co2 %>%
+  tidytime() %>%
+  setNames(c("year", "series", "co2"))
+co2_tidy
 ```
 
 ## crimtab
 
 ```{r crimtab}
-
-
+crimtab_tidy <- crimtab %>%
+  as.data.frame() %>%
+  setNames(c("finger_len", "bod_height","count")) %>%
+  tbl_df()
+crimtab_tidy
 ```
 
 ## discoveries
 
 ```{r discoveries}
-
-
+discoveries_tidy <- discoveries %>%
+  tidytime() %>%
+  setNames(c("year", "series", "disc"))
+discoveries_tidy
 ```
 
 ## DNase
@@ -212,8 +223,8 @@ ChickWeight_tidy
 
 ```{r euro}
 euro_tidy<- euro %>%
-  data_frame(country = names(euro)) %>%
-  head()
+  data_frame(country = names(euro))
+head(euro_tidy)
 ```
 
 ## euro.cross
@@ -223,9 +234,8 @@ euro.cross_tidy <- euro.cross %>%
   as.data.frame() %>%
   mutate(from = row.names(.)) %>%
   gather(to, value, -from) %>%
-  arrange(from, to) %>%
-  head()
-
+  arrange(from, to) 
+head(euro.cross_tidy)
 ```
 
 ## eurodist
@@ -238,8 +248,9 @@ euro.cross_tidy <- euro.cross %>%
 ## EuStockMarkets
 
 ```{r EuStockMarkets}
-EuStockMarkets_tidy <- tidytime(EuStockMarkets)
-
+EuStockMarkets_tidy <- EuStockMarkets %>%
+  tidytime()
+EuStockMarkets_tidy
 ```
 
 ## faithful
@@ -253,7 +264,7 @@ EuStockMarkets_tidy <- tidytime(EuStockMarkets)
 ```{r fdeaths}
 fdeaths_tidy <- fdeaths %>%
   tidytime()
-
+fdeaths_tidy  
 ```
 
 ## Formaldehyde
@@ -288,44 +299,39 @@ fdeaths_tidy <- fdeaths %>%
 HairEyeColor_tidy <- HairEyeColor %>%
   as.data.frame() %>%
   tbl_df()
-
+HairEyeColor_tidy
 ```
 
 ## Harman23.cor
 
 ```{r Harman23.cor}
-Harmnam23_tidy -> Harman23.cor %>%
+Harman23_tidy <- Harman23.cor %>%
   as.data.frame() %>%
   mutate(measurement = row.names(.)) %>%
   gather(compare, value, -measurement) %>%
-  arrange(measurement, compare) %>%
-  head()
-
+  arrange(measurement, compare)
+head(Harman23_tidy)
 ```
 
 ## Harman74.cor
 
 ```{r Harman74.cor}
-
-
+Harman74_tidy <- Harman74.cor %>%
+  as.data.frame() %>%
+  mutate(measurement = row.names(.)) %>%
+  gather(compare, value, -measurement) %>%
+  arrange(measurement, compare)
+head(Harman74_tidy)
 ```
 
 ## Indometh
 ```{r Indometh}
-Indometh_tidy <- Indometh %>%
-  mutate(obs = seq_len(n())) %>%
-  gather(key, value, -obs) %>%
-  tbl_df()
-Indometh_tidy
+# 'Indometh' already tidy
 ```
 
 ### infert
 ```{r infert}
-infert_tidy <- infert %>%
-  mutate(subject = seq_len(n())) %>%
-  gather(key, value, -subject) %>%
-  tbl_df()
-infert_tidy
+# 'infert' already tidy
 ```
 
 ## InsectSprays
@@ -335,82 +341,102 @@ infert_tidy
 
 ## iris
 ```{r iris}
-iris_tidy <- iris %>%
-  mutate(plantnum = seq_len(n())) %>%
-  gather(measurement, value, -plantnum) %>%
-  tbl_df()
-iris_tidy
+# 'iris' is already tidy
 ```
 
 ## iris3
 
 ```{r iris3}
-
+# 'iris3' is already tidy
 
 ```
 
 ## islands
 
 ```{r islands}
-
-
+islands_tidy <- islands %>%
+  as.data.frame() %>%
+  setNames("area") %>%
+  mutate(island = row.names(.)) %>%
+  select(2,1) %>%
+  tbl_df()
+islands_tidy
 ```
 
 ## JohnsonJohnson
 
 ```{r JohnsonJohnson}
-
-
+JohnsonJohnson_tidy <- JohnsonJohnson %>%
+  tidytime()
+JohnsonJohnson_tidy
 ```
 
 ## LakeHuron
 
 ```{r LakeHuron}
-
-
+LakeHuron_tidy <- LakeHuron %>%
+  tidytime() %>%
+  setNames(c("year", "series", "level_ft"))
+LakeHuron_tidy
 ```
 
 ## ldeaths
 
 ```{r ldeaths}
-
-
+ldeaths_tidy <- ldeaths %>%
+  tidytime() %>%
+  setNames(c("year", "series", "deaths"))
+ldeaths_tidy
 ```
 
 ## lh
 
 ```{r lh}
-
-
+lh_tidy <- lh %>%
+  tidytime() %>%
+  setNames(c("time_min", "series", "lh"))
+lh_tidy
 ```
 
 ## LifeCycleSavings
 ```{r LifeCycleSavings}
-# LifeCycleSavings is already tidy
+LifeCycleSavings_tidy <- LifeCycleSavings %>%
+  mutate(country = row.names(.)) %>%
+  select(6,1,2,3,4,5) %>%
+  tbl_df()
+LifeCycleSavings_tidy
 ```
 
 ## Loblolly
 ```{r Loblolly}
-# Loblolly is already tidy
+Loblolly_tidy <- Loblolly %>%
+  mutate(tree_num = row.names(.)) %>%
+  select(4,1,2,3) %>%
+  tbl_df()
+Loblolly_tidy
 ```
 
 ## longley
 ```{r longley}
-# longley is already tidy, unless the duplicate column will cause an issue?
+# longley is already tidy
 ```
 
 ## lynx
 
 ```{r lynx}
-
-
+lynx_tidy <- lynx %>%
+  tidytime() %>%
+  setNames(c("year", "series", "trappings"))
+lynx_tidy
 ```
 
 ## mdeaths
 
 ```{r mdeaths}
-
-
+mdeaths_tidy <- mdeaths %>%
+  tidytime() %>%
+  setNames(c("year", "series", "deaths"))
+mdeaths_tidy
 ```
 
 ## morley
@@ -420,28 +446,38 @@ iris_tidy
 
 ## mtcars
 ```{r mtcars}
-
+mtcars_tidy <- mtcars %>%
+  mutate(car = row.names(.)) %>%
+  select(12,1:11) %>%
+  tbl_df()
+mtcars_tidy
 ```
 
 ## nhtemp
 
 ```{r nhtemp}
-
-
+nhtemp_tidy <- nhtemp %>%
+  tidytime() %>%
+  setNames(c("year", "series", "temp_F"))
+nhtemp_tidy
 ```
 
 ## Nile
 
 ```{r Nile}
-
-
+Nile_tidy <- Nile %>%
+  tidytime() %>%
+  setNames(c("year", "series", "flow"))
+Nile_tidy
 ```
 
 ## nottem
 
 ```{r nottem}
-
-
+nottem_tidy <- nottem %>%
+  tidytime() %>%
+  setNames(c("year", "series", "temp_F"))
+nottem_tidy
 ```
 
 ## npk
@@ -452,89 +488,85 @@ iris_tidy
 ## occupationalStatus
 
 ```{r occupationalStatus}
-
+#?
 
 ```
 
 ## Orange
 ```{r Orange}
-Orange_tidy <- Orange %>%
-  gather(measurement, value, -Tree) %>%
-  tbl_df()
-Orange_tidy
+# 'Orange' already tidy
 ```
 
 ## OrchardSprays
 ```{r OrchardSrays}
+# 'OrchardSprays' alreayd tidy
 ```
 
 ## PlantGrowth
 ```{r PlantGrowth}
-PlantGrowth_tidy <- PlantGrowth %>%
-  mutate(obs = seq_len(n())) %>%
-  gather(key, value, -obs) %>%
-  tbl_df()
-PlantGrowth_tidy
+# 'PlantGrowth' already tidy
 ```
 
 ## precip
 
 ```{r precip}
-
+# how to get town names?
 
 ```
 
 ## presidents
 
 ```{r presidents}
-
-
+presidents_tidy <- presidents %>%
+  tidytime() %>%
+  setNames(c("year", "series", "rating"))
+presidents_tidy
 ```
 
 ## pressure
 ```{r pressure}
-pressure_tidy <- pressure %>%
-  mutate(obs = seq_len(n())) %>%
-  gather(key, value, -obs) %>%
-  tbl_df()
-pressure_tidy
+# 'pressure' is already tidy
 ```
 
 ## Puromycin
 ```{r Puromycin}
+# 'Puromycin' is already tidy
 ```
 
 ## quakes
 ```{r quakes}
+# 'quakes' is already tidy
 ```
 
 ## randu
 ```{r randu}
-randu_tidy <- randu %>%
-  mutate(obs = seq_len(n())) %>%
-  gather(key, value, -obs) %>%
-  tbl_df()
-randu_tidy
+# 'randu' is already tidy
 ```
 
 ## rivers
 
 ```{r rivers}
-
-
+rivers_tidy <- rivers %>%
+  as.data.frame() %>%
+  setNames("length_mi") %>%
+  mutate(river_num = seq_len(n())) %>%
+  select(2,1) %>%
+  tbl_df()
+rivers_tidy
 ```
 
 ## rock
 ```{r rock}
 rock_tidy <- rock %>%
-  mutate(obs = seq_len(n())) %>%
-  gather(key, value, -obs) %>%
+  mutate(samp_num = seq_len(n())) %>%
+  select(5,1:4) %>%
   tbl_df()
 rock_tidy
 ```
 
 ## sleep
 ```{r sleep}
+# 'sleep' is already tidy
 ```
 
 ## stack.loss
@@ -553,119 +585,139 @@ rock_tidy
 
 ## stackloss
 ```{r stackloss}
-stackloss_tidy <- stackloss %>%
-  mutate(obs = seq_len(n())) %>%
-  gather(key, value, -obs) %>%
-  tbl_df()
-stackloss_tidy
+# 'stackloss' already tidy
 ```
 
 ## state.abb
 
 ```{r state.abb}
-
-
+# see states
 ```
 
 ## state.area
 
 ```{r state.area}
-
-
+# see states
 ```
 
 ## state.center
 
 ```{r state.center}
-
-
+# see states
 ```
 
 ## state.division
 
 ```{r state.division}
-
-
+# see states
 ```
 
 ## state.name
 
 ```{r state.name}
-
-
+# see states
 ```
 
 ## state.region
 
 ```{r state.region}
-
-
+# see states
 ```
 
 ## state.x77
 
 ```{r state.x77}
+# see states
+```
 
+## states
 
+```{r states}
+state.abb_tidy <- as.data.frame(state.abb) 
+state.area_tidy <- as.data.frame(state.area)
+state.center_tidy <- as.data.frame(state.center)
+state.division_tidy <- as.data.frame(state.division)
+state.name_tidy <- as.data.frame(state.name)
+state.region_tidy <- as.data.frame(state.region)
+state.x77_tidy <- state.x77 %>%
+  as.data.frame() %>%
+  mutate(state = row.names(.)) %>%
+  select(9,1:8)
+
+states_tidy <- cbind(state.abb_tidy, state.area_tidy, state.center_tidy, state.division_tidy, state.region_tidy, state.x77_tidy) %>%
+  tbl_df()
+states_tidy
 ```
 
 ## sunspot.month
 
 ```{r sunspot.month}
-
-
+sunspot.month_tidy <- sunspot.month %>%
+  tidytime() %>%
+  setNames(c("year", "series", "sunspots"))
+sunspot.month_tidy
 ```
 
 ## sunspot.year
 
 ```{r sunspot.year}
-
-
+sunspot.year_tidy <- sunspot.year %>%
+  tidytime() %>%
+  setNames(c("year", "series", "sunspots"))
+sunspot.year_tidy
 ```
 
 ## sunspots
 
 ```{r sunspots}
-
-
+sunspots_tidy <- sunspots %>%
+  tidytime() %>%
+  setNames(c("year", "series", "sunspots"))
+sunspots_tidy
 ```
 
 ## swiss
 ```{r swiss}
 swiss_tidy <- swiss %>%
   mutate(region = rownames(.)) %>%
-  gather(key, value, -region) %>%
+  select(7,1:6) %>%
   tbl_df()
 swiss_tidy
 ```
 
 ## Theoph
 ```{r Theoph}
+# 'Theoph' is already tidy
 ```
 
 ## Titanic
 
 ```{r Titanic}
-
-
+Titanic_tidy <- Titanic %>%
+  as.data.frame() %>%
+  tbl_df()
+Titanic_tidy
 ```
 
 ## ToothGrowth
 ```{r ToothGrowth}
+# 'ToothGrowth' is already tidy
 ```
 
 ## treering
 
 ```{r treering}
-
-
+treering_tidy <- treering %>%
+  tidytime() %>%
+  setNames(c("year", "series", "width"))
+treering_tidy
 ```
 
 ## trees
 ```{r trees}
 trees_tidy <- trees %>%
-  mutate(tree = seq_len(n())) %>%
-  gather(key, value, -tree) %>%
+  mutate(tree_num = seq_len(n())) %>%
+  select(4,1:3) %>%
   tbl_df()
 trees_tidy
 ```
@@ -673,36 +725,44 @@ trees_tidy
 ## UCBAdmissions
 
 ```{r USBAdmissions}
-
-
+UCBAdmissions_tidy <- UCBAdmissions %>%
+  as.data.frame() %>%
+  tbl_df()
+UCBAdmissions_tidy
 ```
 
 ## UKDriverDeaths
 
 ```{r UKDriverDeaths}
-
-
+UKDriverDeaths_tidy <- UKDriverDeaths %>%
+  tidytime() %>%
+  setNames(c("year", "series", "deaths"))
+UKDriverDeaths_tidy
 ```
 
 ## UKgas
 
 ```{r UKgas}
-
-
+UKgas_tidy <- UKgas %>%
+  tidytime() %>%
+  setNames(c("year", "series", "gas"))
+UKgas_tidy
 ```
 
 ## USAccDeaths
 
 ```{r USAccDeaths}
-
-
+USAccDeaths_tidy <- USAccDeaths %>%
+  tidytime() %>%
+  setNames(c("year", "series", "deaths"))
+USAccDeaths_tidy
 ```
 
 ## USArrests
 ```{r USArrests}
 USArrests_tidy <- USArrests %>%
   mutate(state = rownames(.)) %>%
-  gather(key, value, -state) %>%
+  select(5,1:4) %>%
   tbl_df()
 USArrests_tidy
 ```
@@ -710,7 +770,7 @@ USArrests_tidy
 ## UScitiesD
 
 ```{r UScitiesD}
-
+# class dist
 
 ```
 
@@ -718,7 +778,7 @@ USArrests_tidy
 ```{r USJudgeRatings}
 USJudgeRatings_tidy <- USJudgeRatings %>%
   mutate(judge= rownames(.)) %>%
-  gather(key, value, -judge) %>%
+  select(13,1:12) %>%
   tbl_df()
 USJudgeRatings_tidy
 ```
@@ -736,8 +796,10 @@ USPersonalExpenditure_tidy
 ## uspop
 
 ```{r uspop}
-
-
+uspop_tidy <- uspop %>%
+  tidytime() %>%
+  setNames(c("year", "series", "pop"))
+uspop_tidy
 ```
 
 ## VADeaths
@@ -752,15 +814,17 @@ VADeaths_tidy
 
 ## volcano
 ```{r volcano}
+#matrix of topographic info
 ```
 
 ## warpbreaks
 ```{r warpbreaks}
-
+# 'warpbreaks' is already tidy
 ```
 
 ## women
 ```{r women}
+# 'women' is already tidy
 ```
 
 ## WorldPhones
@@ -777,6 +841,9 @@ WPs_tidy
 ## WWWusage
 
 ```{r WWWusage}
-
+WWWusage_tidy <- WWWusage %>%
+  tidytime() %>%
+  setNames(c("time", "series", "users"))
+WWWusage_tidy
 
 ```
