@@ -71,7 +71,19 @@ AirPassengers_tidy
 ## airquality
 
 ```{r airquality}
+# 'airquality' is already tidy
 
+```
+
+## anscome
+
+```{r anscombe}
+anscombe_tidy <- anscombe %>%
+  mutate(obs = seq_len(n())) %>%
+  gather(key, value, -obs) %>%
+  separate(key, into = c("var", "set"), sep=1) %>%
+  spread(var, value) %>%
+  arrange(set, obs)
 
 ```
 
@@ -88,22 +100,12 @@ AirPassengers_tidy
 ```{r attenu}
 # `attenu` already tidy
 
-#attenu_tidy <- attenu %>%
-#  mutate(obs = seq_len(n())) %>%
- # gather(varible, value, -obs) %>%
-  #tbl_df
-#attenu_tidy
-
 ```
 
 ## attitude
 
 ```{r attitude}
-attitude_tidy <- attitude %>%
-  mutate(dept = seq_len(n())) %>%
-  gather(varible, value, -dept) %>%
-  tbl_df
-attitude_tidy
+# 'attitude' is already tidy
 ```
 
 ## beavers
@@ -125,24 +127,30 @@ beavers_tidy <- rbind_list(beaver1_tidy, beaver2_tidy)
 beavers_tidy
 ```
 
+## BJsales
+
+```{r BJsales}
+
+
+```
+
+## BJsales.lead
+
+```{r BJsales.lead}
+
+
+```
+
 ## BOD
 
 ```{r BOD}
-BOD_tidy <- BOD %>% tbl_df %>%
-  mutate(obs = seq_len(n())) %>%
-  gather(key, value, -obs)
-
-BOD_tidy
+# 'BOD' is already tidy
 ```
 
 ## cars
 
 ```{r cars}
-cars_tidy <- cars %>% tbl_df %>%
-  mutate(obs = seq_len(n())) %>%
-  gather(key, value, -obs)
-
-cars_tidy
+# 'cars' is already tidy
 ```
 
 ## ChickWeight
@@ -167,6 +175,27 @@ ChickWeight_tidy
 # `CO2` already tidy
 ```
 
+## co2
+
+```{r co2}
+
+
+```
+
+## crimtab
+
+```{r crimtab}
+
+
+```
+
+## discoveries
+
+```{r discoveries}
+
+
+```
+
 ## DNase
 
 ```{r DNase}
@@ -179,10 +208,52 @@ ChickWeight_tidy
 # `esoph` already tidy
 ```
 
+## euro
+
+```{r euro}
+euro_tidy<- euro %>%
+  data_frame(country = names(euro)) %>%
+  head()
+```
+
+## euro.cross
+
+```{r euro.cross}
+euro.cross_tidy <- euro.cross %>%
+  as.data.frame() %>%
+  mutate(from = row.names(.)) %>%
+  gather(to, value, -from) %>%
+  arrange(from, to) %>%
+  head()
+
+```
+
+## eurodist
+
+```{r eurodist}
+#? class dist
+
+```
+
+## EuStockMarkets
+
+```{r EuStockMarkets}
+EuStockMarkets_tidy <- tidytime(EuStockMarkets)
+
+```
+
 ## faithful
 
 ```{r faithful}
 # `faithful` already tidy
+```
+
+## fdeaths
+
+```{r fdeaths}
+fdeaths_tidy <- fdeaths %>%
+  tidytime()
+
 ```
 
 ## Formaldehyde
@@ -194,11 +265,49 @@ ChickWeight_tidy
 ## freeny
 
 ```{r freeny}
-freeny_tidy <- freeny %>%
-  tbl_df %>%
-  mutate(year = seq(1962.25, 1971.75, by = 0.25)) %>%
-  gather (key, value, -year)
-freeny_tidy
+
+```
+
+## freeny.x
+
+```{r freeny.x}
+
+
+```
+
+## freeny.y
+
+```{r freeny.y}
+
+
+```
+
+## HairEyeColor
+
+```{r HairEyeColor}
+HairEyeColor_tidy <- HairEyeColor %>%
+  as.data.frame() %>%
+  tbl_df()
+
+```
+
+## Harman23.cor
+
+```{r Harman23.cor}
+Harmnam23_tidy -> Harman23.cor %>%
+  as.data.frame() %>%
+  mutate(measurement = row.names(.)) %>%
+  gather(compare, value, -measurement) %>%
+  arrange(measurement, compare) %>%
+  head()
+
+```
+
+## Harman74.cor
+
+```{r Harman74.cor}
+
+
 ```
 
 ## Indometh
@@ -233,6 +342,48 @@ iris_tidy <- iris %>%
 iris_tidy
 ```
 
+## iris3
+
+```{r iris3}
+
+
+```
+
+## islands
+
+```{r islands}
+
+
+```
+
+## JohnsonJohnson
+
+```{r JohnsonJohnson}
+
+
+```
+
+## LakeHuron
+
+```{r LakeHuron}
+
+
+```
+
+## ldeaths
+
+```{r ldeaths}
+
+
+```
+
+## lh
+
+```{r lh}
+
+
+```
+
 ## LifeCycleSavings
 ```{r LifeCycleSavings}
 # LifeCycleSavings is already tidy
@@ -248,6 +399,20 @@ iris_tidy
 # longley is already tidy, unless the duplicate column will cause an issue?
 ```
 
+## lynx
+
+```{r lynx}
+
+
+```
+
+## mdeaths
+
+```{r mdeaths}
+
+
+```
+
 ## morley
 ```{r morley}
 # morley is already tidy
@@ -258,9 +423,37 @@ iris_tidy
 
 ```
 
+## nhtemp
+
+```{r nhtemp}
+
+
+```
+
+## Nile
+
+```{r Nile}
+
+
+```
+
+## nottem
+
+```{r nottem}
+
+
+```
+
 ## npk
 ```{r npk}
 # npk is already tidy
+```
+
+## occupationalStatus
+
+```{r occupationalStatus}
+
+
 ```
 
 ## Orange
@@ -282,6 +475,20 @@ PlantGrowth_tidy <- PlantGrowth %>%
   gather(key, value, -obs) %>%
   tbl_df()
 PlantGrowth_tidy
+```
+
+## precip
+
+```{r precip}
+
+
+```
+
+## presidents
+
+```{r presidents}
+
+
 ```
 
 ## pressure
@@ -310,6 +517,13 @@ randu_tidy <- randu %>%
 randu_tidy
 ```
 
+## rivers
+
+```{r rivers}
+
+
+```
+
 ## rock
 ```{r rock}
 rock_tidy <- rock %>%
@@ -323,6 +537,20 @@ rock_tidy
 ```{r sleep}
 ```
 
+## stack.loss
+
+```{r stack.loss}
+
+
+```
+
+## stack.x
+
+```{r stack.x}
+
+
+```
+
 ## stackloss
 ```{r stackloss}
 stackloss_tidy <- stackloss %>%
@@ -330,6 +558,76 @@ stackloss_tidy <- stackloss %>%
   gather(key, value, -obs) %>%
   tbl_df()
 stackloss_tidy
+```
+
+## state.abb
+
+```{r state.abb}
+
+
+```
+
+## state.area
+
+```{r state.area}
+
+
+```
+
+## state.center
+
+```{r state.center}
+
+
+```
+
+## state.division
+
+```{r state.division}
+
+
+```
+
+## state.name
+
+```{r state.name}
+
+
+```
+
+## state.region
+
+```{r state.region}
+
+
+```
+
+## state.x77
+
+```{r state.x77}
+
+
+```
+
+## sunspot.month
+
+```{r sunspot.month}
+
+
+```
+
+## sunspot.year
+
+```{r sunspot.year}
+
+
+```
+
+## sunspots
+
+```{r sunspots}
+
+
 ```
 
 ## swiss
@@ -345,8 +643,22 @@ swiss_tidy
 ```{r Theoph}
 ```
 
+## Titanic
+
+```{r Titanic}
+
+
+```
+
 ## ToothGrowth
 ```{r ToothGrowth}
+```
+
+## treering
+
+```{r treering}
+
+
 ```
 
 ## trees
@@ -358,6 +670,34 @@ trees_tidy <- trees %>%
 trees_tidy
 ```
 
+## UCBAdmissions
+
+```{r USBAdmissions}
+
+
+```
+
+## UKDriverDeaths
+
+```{r UKDriverDeaths}
+
+
+```
+
+## UKgas
+
+```{r UKgas}
+
+
+```
+
+## USAccDeaths
+
+```{r USAccDeaths}
+
+
+```
+
 ## USArrests
 ```{r USArrests}
 USArrests_tidy <- USArrests %>%
@@ -365,6 +705,13 @@ USArrests_tidy <- USArrests %>%
   gather(key, value, -state) %>%
   tbl_df()
 USArrests_tidy
+```
+
+## UScitiesD
+
+```{r UScitiesD}
+
+
 ```
 
 ## USJudgeRatings
@@ -384,6 +731,13 @@ USPersonalExpenditure_tidy <- USPersonalExpenditure %>%
   gather(year, expense, -group) %>%
   tbl_df()
 USPersonalExpenditure_tidy
+```
+
+## uspop
+
+```{r uspop}
+
+
 ```
 
 ## VADeaths
@@ -418,4 +772,11 @@ WPs_tidy <- WorldPhones %>%
   gather(continent, value, -year) %>%
   tbl_df()
 WPs_tidy
+```
+
+## WWWusage
+
+```{r WWWusage}
+
+
 ```
