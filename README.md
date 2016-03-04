@@ -261,25 +261,26 @@ austres
 ``` r
 austres_tidy <- austres %>%
   tidytime() %>%
-  setNames(c("year", "series","residents"))
+  setNames(c("year", "series","residents")) %>%
+  select(-series)
 austres_tidy
 ```
 
-    #> Source: local data frame [89 x 3]
+    #> Source: local data frame [89 x 2]
     #> 
-    #>       year series residents
-    #>      (dbl)  (chr)     (dbl)
-    #> 1  1971.25      x   13067.3
-    #> 2  1971.50      x   13130.5
-    #> 3  1971.75      x   13198.4
-    #> 4  1972.00      x   13254.2
-    #> 5  1972.25      x   13303.7
-    #> 6  1972.50      x   13353.9
-    #> 7  1972.75      x   13409.3
-    #> 8  1973.00      x   13459.2
-    #> 9  1973.25      x   13504.5
-    #> 10 1973.50      x   13552.6
-    #> ..     ...    ...       ...
+    #>       year residents
+    #>      (dbl)     (dbl)
+    #> 1  1971.25   13067.3
+    #> 2  1971.50   13130.5
+    #> 3  1971.75   13198.4
+    #> 4  1972.00   13254.2
+    #> 5  1972.25   13303.7
+    #> 6  1972.50   13353.9
+    #> 7  1972.75   13409.3
+    #> 8  1973.00   13459.2
+    #> 9  1973.25   13504.5
+    #> 10 1973.50   13552.6
+    #> ..     ...       ...
 
 attenu
 ------
@@ -354,50 +355,52 @@ BJsales
 
 ``` r
 BJsales_tidy <- BJsales %>%
-  tidytime() 
+  tidytime() %>%
+  select(-series)
 BJsales_tidy
 ```
 
-    #> Source: local data frame [150 x 3]
+    #> Source: local data frame [150 x 2]
     #> 
-    #>    index series value
-    #>    (dbl)  (chr) (dbl)
-    #> 1      1      x 200.1
-    #> 2      2      x 199.5
-    #> 3      3      x 199.4
-    #> 4      4      x 198.9
-    #> 5      5      x 199.0
-    #> 6      6      x 200.2
-    #> 7      7      x 198.6
-    #> 8      8      x 200.0
-    #> 9      9      x 200.3
-    #> 10    10      x 201.2
-    #> ..   ...    ...   ...
+    #>    index value
+    #>    (dbl) (dbl)
+    #> 1      1 200.1
+    #> 2      2 199.5
+    #> 3      3 199.4
+    #> 4      4 198.9
+    #> 5      5 199.0
+    #> 6      6 200.2
+    #> 7      7 198.6
+    #> 8      8 200.0
+    #> 9      9 200.3
+    #> 10    10 201.2
+    #> ..   ...   ...
 
 BJsales.lead
 ------------
 
 ``` r
 BJsales.lead_tidy <- BJsales.lead%>%
-  tidytime() 
+  tidytime() %>%
+  select(-series)
 BJsales.lead_tidy
 ```
 
-    #> Source: local data frame [150 x 3]
+    #> Source: local data frame [150 x 2]
     #> 
-    #>    index series value
-    #>    (dbl)  (chr) (dbl)
-    #> 1      1      x 10.01
-    #> 2      2      x 10.07
-    #> 3      3      x 10.32
-    #> 4      4      x  9.75
-    #> 5      5      x 10.33
-    #> 6      6      x 10.13
-    #> 7      7      x 10.36
-    #> 8      8      x 10.32
-    #> 9      9      x 10.13
-    #> 10    10      x 10.16
-    #> ..   ...    ...   ...
+    #>    index value
+    #>    (dbl) (dbl)
+    #> 1      1 10.01
+    #> 2      2 10.07
+    #> 3      3 10.32
+    #> 4      4  9.75
+    #> 5      5 10.33
+    #> 6      6 10.13
+    #> 7      7 10.36
+    #> 8      8 10.32
+    #> 9      9 10.13
+    #> 10    10 10.16
+    #> ..   ...   ...
 
 BOD
 ---
@@ -496,25 +499,26 @@ co2
 ``` r
 co2_tidy <- co2 %>%
   tidytime() %>%
-  setNames(c("year", "series", "co2"))
+  setNames(c("year", "series", "co2")) %>%
+  select(-series)
 co2_tidy
 ```
 
-    #> Source: local data frame [468 x 3]
+    #> Source: local data frame [468 x 2]
     #> 
-    #>        year series    co2
-    #>       (dbl)  (chr)  (dbl)
-    #> 1  1959.000      x 315.42
-    #> 2  1959.083      x 316.31
-    #> 3  1959.167      x 316.50
-    #> 4  1959.250      x 317.56
-    #> 5  1959.333      x 318.13
-    #> 6  1959.417      x 318.00
-    #> 7  1959.500      x 316.39
-    #> 8  1959.583      x 314.65
-    #> 9  1959.667      x 313.68
-    #> 10 1959.750      x 313.18
-    #> ..      ...    ...    ...
+    #>        year    co2
+    #>       (dbl)  (dbl)
+    #> 1  1959.000 315.42
+    #> 2  1959.083 316.31
+    #> 3  1959.167 316.50
+    #> 4  1959.250 317.56
+    #> 5  1959.333 318.13
+    #> 6  1959.417 318.00
+    #> 7  1959.500 316.39
+    #> 8  1959.583 314.65
+    #> 9  1959.667 313.68
+    #> 10 1959.750 313.18
+    #> ..      ...    ...
 
 crimtab
 -------
@@ -549,25 +553,26 @@ discoveries
 ``` r
 discoveries_tidy <- discoveries %>%
   tidytime() %>%
-  setNames(c("year", "series", "disc"))
+  setNames(c("year", "series", "disc")) %>%
+  select(-series)
 discoveries_tidy
 ```
 
-    #> Source: local data frame [100 x 3]
+    #> Source: local data frame [100 x 2]
     #> 
-    #>     year series  disc
-    #>    (dbl)  (chr) (dbl)
-    #> 1   1860      x     5
-    #> 2   1861      x     3
-    #> 3   1862      x     0
-    #> 4   1863      x     2
-    #> 5   1864      x     0
-    #> 6   1865      x     3
-    #> 7   1866      x     2
-    #> 8   1867      x     3
-    #> 9   1868      x     6
-    #> 10  1869      x     1
-    #> ..   ...    ...   ...
+    #>     year  disc
+    #>    (dbl) (dbl)
+    #> 1   1860     5
+    #> 2   1861     3
+    #> 3   1862     0
+    #> 4   1863     2
+    #> 5   1864     0
+    #> 6   1865     3
+    #> 7   1866     2
+    #> 8   1867     3
+    #> 9   1868     6
+    #> 10  1869     1
+    #> ..   ...   ...
 
 DNase
 -----
@@ -606,13 +611,14 @@ euro
 
 ``` r
 euro_tidy<- euro %>%
-  data_frame(country = names(euro))
+  data_frame(country = names(euro)) %>%
+  setNames(c("rate", "country"))
 head(euro_tidy)
 ```
 
     #> Source: local data frame [6 x 2]
     #> 
-    #>           . country
+    #>        rate country
     #>       (dbl)   (chr)
     #> 1  13.76030     ATS
     #> 2  40.33990     BEF
@@ -656,25 +662,26 @@ EuStockMarkets
 
 ``` r
 EuStockMarkets_tidy <- EuStockMarkets %>%
-  tidytime()
+  tidytime() %>%
+  setNames(c("year", "country", "value"))
 EuStockMarkets_tidy
 ```
 
     #> Source: local data frame [7,440 x 3]
     #> 
-    #>       index series   value
-    #>       (dbl)  (chr)   (dbl)
-    #> 1  1991.496    DAX 1628.75
-    #> 2  1991.500    DAX 1613.63
-    #> 3  1991.504    DAX 1606.51
-    #> 4  1991.508    DAX 1621.04
-    #> 5  1991.512    DAX 1618.16
-    #> 6  1991.515    DAX 1610.61
-    #> 7  1991.519    DAX 1630.75
-    #> 8  1991.523    DAX 1640.17
-    #> 9  1991.527    DAX 1635.47
-    #> 10 1991.531    DAX 1645.89
-    #> ..      ...    ...     ...
+    #>        year country   value
+    #>       (dbl)   (chr)   (dbl)
+    #> 1  1991.496     DAX 1628.75
+    #> 2  1991.500     DAX 1613.63
+    #> 3  1991.504     DAX 1606.51
+    #> 4  1991.508     DAX 1621.04
+    #> 5  1991.512     DAX 1618.16
+    #> 6  1991.515     DAX 1610.61
+    #> 7  1991.519     DAX 1630.75
+    #> 8  1991.523     DAX 1640.17
+    #> 9  1991.527     DAX 1635.47
+    #> 10 1991.531     DAX 1645.89
+    #> ..      ...     ...     ...
 
 faithful
 --------
@@ -697,25 +704,27 @@ fdeaths
 
 ``` r
 fdeaths_tidy <- fdeaths %>%
-  tidytime()
+  tidytime() %>%
+  select(-series) %>%
+  setNames(c("year", "deaths"))
 fdeaths_tidy  
 ```
 
-    #> Source: local data frame [72 x 3]
+    #> Source: local data frame [72 x 2]
     #> 
-    #>       index series value
-    #>       (dbl)  (chr) (dbl)
-    #> 1  1974.000      x   901
-    #> 2  1974.083      x   689
-    #> 3  1974.167      x   827
-    #> 4  1974.250      x   677
-    #> 5  1974.333      x   522
-    #> 6  1974.417      x   406
-    #> 7  1974.500      x   441
-    #> 8  1974.583      x   393
-    #> 9  1974.667      x   387
-    #> 10 1974.750      x   582
-    #> ..      ...    ...   ...
+    #>        year deaths
+    #>       (dbl)  (dbl)
+    #> 1  1974.000    901
+    #> 2  1974.083    689
+    #> 3  1974.167    827
+    #> 4  1974.250    677
+    #> 5  1974.333    522
+    #> 6  1974.417    406
+    #> 7  1974.500    441
+    #> 8  1974.583    393
+    #> 9  1974.667    387
+    #> 10 1974.750    582
+    #> ..      ...    ...
 
 Formaldehyde
 ------------
@@ -912,11 +921,39 @@ iris3
 -----
 
 ``` r
-# 'iris3' is already tidy
-head(iris3)
+iris3_tidy <- iris3 %>%
+  as.data.frame()
+head(iris3_tidy)
 ```
 
-    #> [1] 5.1 4.9 4.7 4.6 5.0 5.4
+    #>   Sepal L..Setosa Sepal W..Setosa Petal L..Setosa Petal W..Setosa
+    #> 1             5.1             3.5             1.4             0.2
+    #> 2             4.9             3.0             1.4             0.2
+    #> 3             4.7             3.2             1.3             0.2
+    #> 4             4.6             3.1             1.5             0.2
+    #> 5             5.0             3.6             1.4             0.2
+    #> 6             5.4             3.9             1.7             0.4
+    #>   Sepal L..Versicolor Sepal W..Versicolor Petal L..Versicolor
+    #> 1                 7.0                 3.2                 4.7
+    #> 2                 6.4                 3.2                 4.5
+    #> 3                 6.9                 3.1                 4.9
+    #> 4                 5.5                 2.3                 4.0
+    #> 5                 6.5                 2.8                 4.6
+    #> 6                 5.7                 2.8                 4.5
+    #>   Petal W..Versicolor Sepal L..Virginica Sepal W..Virginica
+    #> 1                 1.4                6.3                3.3
+    #> 2                 1.5                5.8                2.7
+    #> 3                 1.5                7.1                3.0
+    #> 4                 1.3                6.3                2.9
+    #> 5                 1.5                6.5                3.0
+    #> 6                 1.3                7.6                3.0
+    #>   Petal L..Virginica Petal W..Virginica
+    #> 1                6.0                2.5
+    #> 2                5.1                1.9
+    #> 3                5.9                2.1
+    #> 4                5.6                1.8
+    #> 5                5.8                2.2
+    #> 6                6.6                2.1
 
 islands
 -------
@@ -952,25 +989,27 @@ JohnsonJohnson
 
 ``` r
 JohnsonJohnson_tidy <- JohnsonJohnson %>%
-  tidytime()
+  tidytime() %>%
+  select(-series) %>%
+  setNames(c("year", "sales"))
 JohnsonJohnson_tidy
 ```
 
-    #> Source: local data frame [84 x 3]
+    #> Source: local data frame [84 x 2]
     #> 
-    #>      index series value
-    #>      (dbl)  (chr) (dbl)
-    #> 1  1960.00      x  0.71
-    #> 2  1960.25      x  0.63
-    #> 3  1960.50      x  0.85
-    #> 4  1960.75      x  0.44
-    #> 5  1961.00      x  0.61
-    #> 6  1961.25      x  0.69
-    #> 7  1961.50      x  0.92
-    #> 8  1961.75      x  0.55
-    #> 9  1962.00      x  0.72
-    #> 10 1962.25      x  0.77
-    #> ..     ...    ...   ...
+    #>       year sales
+    #>      (dbl) (dbl)
+    #> 1  1960.00  0.71
+    #> 2  1960.25  0.63
+    #> 3  1960.50  0.85
+    #> 4  1960.75  0.44
+    #> 5  1961.00  0.61
+    #> 6  1961.25  0.69
+    #> 7  1961.50  0.92
+    #> 8  1961.75  0.55
+    #> 9  1962.00  0.72
+    #> 10 1962.25  0.77
+    #> ..     ...   ...
 
 LakeHuron
 ---------
@@ -978,25 +1017,26 @@ LakeHuron
 ``` r
 LakeHuron_tidy <- LakeHuron %>%
   tidytime() %>%
-  setNames(c("year", "series", "level_ft"))
+  setNames(c("year", "series", "level_ft")) %>%
+  select(-series)
 LakeHuron_tidy
 ```
 
-    #> Source: local data frame [98 x 3]
+    #> Source: local data frame [98 x 2]
     #> 
-    #>     year series level_ft
-    #>    (dbl)  (chr)    (dbl)
-    #> 1   1875      x   580.38
-    #> 2   1876      x   581.86
-    #> 3   1877      x   580.97
-    #> 4   1878      x   580.80
-    #> 5   1879      x   579.79
-    #> 6   1880      x   580.39
-    #> 7   1881      x   580.42
-    #> 8   1882      x   580.82
-    #> 9   1883      x   581.40
-    #> 10  1884      x   581.32
-    #> ..   ...    ...      ...
+    #>     year level_ft
+    #>    (dbl)    (dbl)
+    #> 1   1875   580.38
+    #> 2   1876   581.86
+    #> 3   1877   580.97
+    #> 4   1878   580.80
+    #> 5   1879   579.79
+    #> 6   1880   580.39
+    #> 7   1881   580.42
+    #> 8   1882   580.82
+    #> 9   1883   581.40
+    #> 10  1884   581.32
+    #> ..   ...      ...
 
 ldeaths
 -------
@@ -1030,25 +1070,26 @@ lh
 ``` r
 lh_tidy <- lh %>%
   tidytime() %>%
-  setNames(c("time_min", "series", "lh"))
+  setNames(c("time_min", "series", "lh")) %>%
+  select(-series)
 lh_tidy
 ```
 
-    #> Source: local data frame [48 x 3]
+    #> Source: local data frame [48 x 2]
     #> 
-    #>    time_min series    lh
-    #>       (dbl)  (chr) (dbl)
-    #> 1         1      x   2.4
-    #> 2         2      x   2.4
-    #> 3         3      x   2.4
-    #> 4         4      x   2.2
-    #> 5         5      x   2.1
-    #> 6         6      x   1.5
-    #> 7         7      x   2.3
-    #> 8         8      x   2.3
-    #> 9         9      x   2.5
-    #> 10       10      x   2.0
-    #> ..      ...    ...   ...
+    #>    time_min    lh
+    #>       (dbl) (dbl)
+    #> 1         1   2.4
+    #> 2         2   2.4
+    #> 3         3   2.4
+    #> 4         4   2.2
+    #> 5         5   2.1
+    #> 6         6   1.5
+    #> 7         7   2.3
+    #> 8         8   2.3
+    #> 9         9   2.5
+    #> 10       10   2.0
+    #> ..      ...   ...
 
 LifeCycleSavings
 ----------------
@@ -1126,25 +1167,26 @@ lynx
 ``` r
 lynx_tidy <- lynx %>%
   tidytime() %>%
-  setNames(c("year", "series", "trappings"))
+  setNames(c("year", "series", "trappings")) %>%
+  select(-series)
 lynx_tidy
 ```
 
-    #> Source: local data frame [114 x 3]
+    #> Source: local data frame [114 x 2]
     #> 
-    #>     year series trappings
-    #>    (dbl)  (chr)     (dbl)
-    #> 1   1821      x       269
-    #> 2   1822      x       321
-    #> 3   1823      x       585
-    #> 4   1824      x       871
-    #> 5   1825      x      1475
-    #> 6   1826      x      2821
-    #> 7   1827      x      3928
-    #> 8   1828      x      5943
-    #> 9   1829      x      4950
-    #> 10  1830      x      2577
-    #> ..   ...    ...       ...
+    #>     year trappings
+    #>    (dbl)     (dbl)
+    #> 1   1821       269
+    #> 2   1822       321
+    #> 3   1823       585
+    #> 4   1824       871
+    #> 5   1825      1475
+    #> 6   1826      2821
+    #> 7   1827      3928
+    #> 8   1828      5943
+    #> 9   1829      4950
+    #> 10  1830      2577
+    #> ..   ...       ...
 
 mdeaths
 -------
@@ -1152,25 +1194,26 @@ mdeaths
 ``` r
 mdeaths_tidy <- mdeaths %>%
   tidytime() %>%
-  setNames(c("year", "series", "deaths"))
+  setNames(c("year", "series", "deaths")) %>%
+  select(-series)
 mdeaths_tidy
 ```
 
-    #> Source: local data frame [72 x 3]
+    #> Source: local data frame [72 x 2]
     #> 
-    #>        year series deaths
-    #>       (dbl)  (chr)  (dbl)
-    #> 1  1974.000      x   2134
-    #> 2  1974.083      x   1863
-    #> 3  1974.167      x   1877
-    #> 4  1974.250      x   1877
-    #> 5  1974.333      x   1492
-    #> 6  1974.417      x   1249
-    #> 7  1974.500      x   1280
-    #> 8  1974.583      x   1131
-    #> 9  1974.667      x   1209
-    #> 10 1974.750      x   1492
-    #> ..      ...    ...    ...
+    #>        year deaths
+    #>       (dbl)  (dbl)
+    #> 1  1974.000   2134
+    #> 2  1974.083   1863
+    #> 3  1974.167   1877
+    #> 4  1974.250   1877
+    #> 5  1974.333   1492
+    #> 6  1974.417   1249
+    #> 7  1974.500   1280
+    #> 8  1974.583   1131
+    #> 9  1974.667   1209
+    #> 10 1974.750   1492
+    #> ..      ...    ...
 
 morley
 ------
@@ -1222,25 +1265,26 @@ nhtemp
 ``` r
 nhtemp_tidy <- nhtemp %>%
   tidytime() %>%
-  setNames(c("year", "series", "temp_F"))
+  setNames(c("year", "series", "temp_F")) %>%
+  select(-series)
 nhtemp_tidy
 ```
 
-    #> Source: local data frame [60 x 3]
+    #> Source: local data frame [60 x 2]
     #> 
-    #>     year series temp_F
-    #>    (dbl)  (chr)  (dbl)
-    #> 1   1912      x   49.9
-    #> 2   1913      x   52.3
-    #> 3   1914      x   49.4
-    #> 4   1915      x   51.1
-    #> 5   1916      x   49.4
-    #> 6   1917      x   47.9
-    #> 7   1918      x   49.8
-    #> 8   1919      x   50.9
-    #> 9   1920      x   49.3
-    #> 10  1921      x   51.9
-    #> ..   ...    ...    ...
+    #>     year temp_F
+    #>    (dbl)  (dbl)
+    #> 1   1912   49.9
+    #> 2   1913   52.3
+    #> 3   1914   49.4
+    #> 4   1915   51.1
+    #> 5   1916   49.4
+    #> 6   1917   47.9
+    #> 7   1918   49.8
+    #> 8   1919   50.9
+    #> 9   1920   49.3
+    #> 10  1921   51.9
+    #> ..   ...    ...
 
 Nile
 ----
@@ -1248,25 +1292,26 @@ Nile
 ``` r
 Nile_tidy <- Nile %>%
   tidytime() %>%
-  setNames(c("year", "series", "flow"))
+  setNames(c("year", "series", "flow")) %>%
+  select(-series)
 Nile_tidy
 ```
 
-    #> Source: local data frame [100 x 3]
+    #> Source: local data frame [100 x 2]
     #> 
-    #>     year series  flow
-    #>    (dbl)  (chr) (dbl)
-    #> 1   1871      x  1120
-    #> 2   1872      x  1160
-    #> 3   1873      x   963
-    #> 4   1874      x  1210
-    #> 5   1875      x  1160
-    #> 6   1876      x  1160
-    #> 7   1877      x   813
-    #> 8   1878      x  1230
-    #> 9   1879      x  1370
-    #> 10  1880      x  1140
-    #> ..   ...    ...   ...
+    #>     year  flow
+    #>    (dbl) (dbl)
+    #> 1   1871  1120
+    #> 2   1872  1160
+    #> 3   1873   963
+    #> 4   1874  1210
+    #> 5   1875  1160
+    #> 6   1876  1160
+    #> 7   1877   813
+    #> 8   1878  1230
+    #> 9   1879  1370
+    #> 10  1880  1140
+    #> ..   ...   ...
 
 nottem
 ------
@@ -1274,25 +1319,26 @@ nottem
 ``` r
 nottem_tidy <- nottem %>%
   tidytime() %>%
-  setNames(c("year", "series", "temp_F"))
+  setNames(c("year", "series", "temp_F")) %>%
+  select(-series)
 nottem_tidy
 ```
 
-    #> Source: local data frame [240 x 3]
+    #> Source: local data frame [240 x 2]
     #> 
-    #>        year series temp_F
-    #>       (dbl)  (chr)  (dbl)
-    #> 1  1920.000      x   40.6
-    #> 2  1920.083      x   40.8
-    #> 3  1920.167      x   44.4
-    #> 4  1920.250      x   46.7
-    #> 5  1920.333      x   54.1
-    #> 6  1920.417      x   58.5
-    #> 7  1920.500      x   57.7
-    #> 8  1920.583      x   56.4
-    #> 9  1920.667      x   54.3
-    #> 10 1920.750      x   50.5
-    #> ..      ...    ...    ...
+    #>        year temp_F
+    #>       (dbl)  (dbl)
+    #> 1  1920.000   40.6
+    #> 2  1920.083   40.8
+    #> 3  1920.167   44.4
+    #> 4  1920.250   46.7
+    #> 5  1920.333   54.1
+    #> 6  1920.417   58.5
+    #> 7  1920.500   57.7
+    #> 8  1920.583   56.4
+    #> 9  1920.667   54.3
+    #> 10 1920.750   50.5
+    #> ..      ...    ...
 
 npk
 ---
@@ -1379,12 +1425,20 @@ precip
 ------
 
 ``` r
-# how to get town names?
-head(precip)
+precip_tidy <- precip %>%
+  data.frame("city" = names(precip), "precip" = as.numeric(precip)) %>%
+  select(city, precip) %>%
+  arrange(city)
+head(precip_tidy)
 ```
 
-    #>      Mobile      Juneau     Phoenix Little Rock Los Angeles  Sacramento 
-    #>        67.0        54.7         7.0        48.5        14.0        17.2
+    #>            city precip
+    #> 1        Albany   33.4
+    #> 2   Albuquerque    7.8
+    #> 3       Atlanta   48.3
+    #> 4 Atlantic City   45.5
+    #> 5     Baltimore   41.8
+    #> 6       Bismark   16.2
 
 presidents
 ----------
@@ -1392,25 +1446,26 @@ presidents
 ``` r
 presidents_tidy <- presidents %>%
   tidytime() %>%
-  setNames(c("year", "series", "rating"))
+  setNames(c("year", "series", "rating")) %>%
+  select(-series)
 presidents_tidy
 ```
 
-    #> Source: local data frame [120 x 3]
+    #> Source: local data frame [120 x 2]
     #> 
-    #>       year series rating
-    #>      (dbl)  (chr)  (dbl)
-    #> 1  1945.00      x     NA
-    #> 2  1945.25      x     87
-    #> 3  1945.50      x     82
-    #> 4  1945.75      x     75
-    #> 5  1946.00      x     63
-    #> 6  1946.25      x     50
-    #> 7  1946.50      x     43
-    #> 8  1946.75      x     32
-    #> 9  1947.00      x     35
-    #> 10 1947.25      x     60
-    #> ..     ...    ...    ...
+    #>       year rating
+    #>      (dbl)  (dbl)
+    #> 1  1945.00     NA
+    #> 2  1945.25     87
+    #> 3  1945.50     82
+    #> 4  1945.75     75
+    #> 5  1946.00     63
+    #> 6  1946.25     50
+    #> 7  1946.50     43
+    #> 8  1946.75     32
+    #> 9  1947.00     35
+    #> 10 1947.25     60
+    #> ..     ...    ...
 
 pressure
 --------
@@ -1682,25 +1737,26 @@ sunspot.month
 ``` r
 sunspot.month_tidy <- sunspot.month %>%
   tidytime() %>%
-  setNames(c("year", "series", "sunspots"))
+  setNames(c("year", "series", "sunspots")) %>%
+  select(-series)
 sunspot.month_tidy
 ```
 
-    #> Source: local data frame [3,177 x 3]
+    #> Source: local data frame [3,177 x 2]
     #> 
-    #>        year series sunspots
-    #>       (dbl)  (chr)    (dbl)
-    #> 1  1749.000      x     58.0
-    #> 2  1749.083      x     62.6
-    #> 3  1749.167      x     70.0
-    #> 4  1749.250      x     55.7
-    #> 5  1749.333      x     85.0
-    #> 6  1749.417      x     83.5
-    #> 7  1749.500      x     94.8
-    #> 8  1749.583      x     66.3
-    #> 9  1749.667      x     75.9
-    #> 10 1749.750      x     75.5
-    #> ..      ...    ...      ...
+    #>        year sunspots
+    #>       (dbl)    (dbl)
+    #> 1  1749.000     58.0
+    #> 2  1749.083     62.6
+    #> 3  1749.167     70.0
+    #> 4  1749.250     55.7
+    #> 5  1749.333     85.0
+    #> 6  1749.417     83.5
+    #> 7  1749.500     94.8
+    #> 8  1749.583     66.3
+    #> 9  1749.667     75.9
+    #> 10 1749.750     75.5
+    #> ..      ...      ...
 
 sunspot.year
 ------------
@@ -1708,25 +1764,26 @@ sunspot.year
 ``` r
 sunspot.year_tidy <- sunspot.year %>%
   tidytime() %>%
-  setNames(c("year", "series", "sunspots"))
+  setNames(c("year", "series", "sunspots")) %>%
+  select(-series)
 sunspot.year_tidy
 ```
 
-    #> Source: local data frame [289 x 3]
+    #> Source: local data frame [289 x 2]
     #> 
-    #>     year series sunspots
-    #>    (dbl)  (chr)    (dbl)
-    #> 1   1700      x        5
-    #> 2   1701      x       11
-    #> 3   1702      x       16
-    #> 4   1703      x       23
-    #> 5   1704      x       36
-    #> 6   1705      x       58
-    #> 7   1706      x       29
-    #> 8   1707      x       20
-    #> 9   1708      x       10
-    #> 10  1709      x        8
-    #> ..   ...    ...      ...
+    #>     year sunspots
+    #>    (dbl)    (dbl)
+    #> 1   1700        5
+    #> 2   1701       11
+    #> 3   1702       16
+    #> 4   1703       23
+    #> 5   1704       36
+    #> 6   1705       58
+    #> 7   1706       29
+    #> 8   1707       20
+    #> 9   1708       10
+    #> 10  1709        8
+    #> ..   ...      ...
 
 sunspots
 --------
@@ -1734,25 +1791,26 @@ sunspots
 ``` r
 sunspots_tidy <- sunspots %>%
   tidytime() %>%
-  setNames(c("year", "series", "sunspots"))
+  setNames(c("year", "series", "sunspots")) %>%
+  select(-series)
 sunspots_tidy
 ```
 
-    #> Source: local data frame [2,820 x 3]
+    #> Source: local data frame [2,820 x 2]
     #> 
-    #>        year series sunspots
-    #>       (dbl)  (chr)    (dbl)
-    #> 1  1749.000      x     58.0
-    #> 2  1749.083      x     62.6
-    #> 3  1749.167      x     70.0
-    #> 4  1749.250      x     55.7
-    #> 5  1749.333      x     85.0
-    #> 6  1749.417      x     83.5
-    #> 7  1749.500      x     94.8
-    #> 8  1749.583      x     66.3
-    #> 9  1749.667      x     75.9
-    #> 10 1749.750      x     75.5
-    #> ..      ...    ...      ...
+    #>        year sunspots
+    #>       (dbl)    (dbl)
+    #> 1  1749.000     58.0
+    #> 2  1749.083     62.6
+    #> 3  1749.167     70.0
+    #> 4  1749.250     55.7
+    #> 5  1749.333     85.0
+    #> 6  1749.417     83.5
+    #> 7  1749.500     94.8
+    #> 8  1749.583     66.3
+    #> 9  1749.667     75.9
+    #> 10 1749.750     75.5
+    #> ..      ...      ...
 
 swiss
 -----
@@ -1846,25 +1904,26 @@ treering
 ``` r
 treering_tidy <- treering %>%
   tidytime() %>%
-  setNames(c("year", "series", "width"))
+  setNames(c("year", "series", "width")) %>%
+  select(-series)
 treering_tidy
 ```
 
-    #> Source: local data frame [7,980 x 3]
+    #> Source: local data frame [7,980 x 2]
     #> 
-    #>     year series width
-    #>    (dbl)  (chr) (dbl)
-    #> 1  -6000      x 1.345
-    #> 2  -5999      x 1.077
-    #> 3  -5998      x 1.545
-    #> 4  -5997      x 1.319
-    #> 5  -5996      x 1.413
-    #> 6  -5995      x 1.069
-    #> 7  -5994      x 0.489
-    #> 8  -5993      x 1.171
-    #> 9  -5992      x 0.887
-    #> 10 -5991      x 0.493
-    #> ..   ...    ...   ...
+    #>     year width
+    #>    (dbl) (dbl)
+    #> 1  -6000 1.345
+    #> 2  -5999 1.077
+    #> 3  -5998 1.545
+    #> 4  -5997 1.319
+    #> 5  -5996 1.413
+    #> 6  -5995 1.069
+    #> 7  -5994 0.489
+    #> 8  -5993 1.171
+    #> 9  -5992 0.887
+    #> 10 -5991 0.493
+    #> ..   ...   ...
 
 trees
 -----
@@ -1925,25 +1984,26 @@ UKDriverDeaths
 ``` r
 UKDriverDeaths_tidy <- UKDriverDeaths %>%
   tidytime() %>%
-  setNames(c("year", "series", "deaths"))
+  setNames(c("year", "series", "deaths")) %>%
+  select(-series)
 UKDriverDeaths_tidy
 ```
 
-    #> Source: local data frame [192 x 3]
+    #> Source: local data frame [192 x 2]
     #> 
-    #>        year series deaths
-    #>       (dbl)  (chr)  (dbl)
-    #> 1  1969.000      x   1687
-    #> 2  1969.083      x   1508
-    #> 3  1969.167      x   1507
-    #> 4  1969.250      x   1385
-    #> 5  1969.333      x   1632
-    #> 6  1969.417      x   1511
-    #> 7  1969.500      x   1559
-    #> 8  1969.583      x   1630
-    #> 9  1969.667      x   1579
-    #> 10 1969.750      x   1653
-    #> ..      ...    ...    ...
+    #>        year deaths
+    #>       (dbl)  (dbl)
+    #> 1  1969.000   1687
+    #> 2  1969.083   1508
+    #> 3  1969.167   1507
+    #> 4  1969.250   1385
+    #> 5  1969.333   1632
+    #> 6  1969.417   1511
+    #> 7  1969.500   1559
+    #> 8  1969.583   1630
+    #> 9  1969.667   1579
+    #> 10 1969.750   1653
+    #> ..      ...    ...
 
 UKgas
 -----
@@ -1951,25 +2011,26 @@ UKgas
 ``` r
 UKgas_tidy <- UKgas %>%
   tidytime() %>%
-  setNames(c("year", "series", "gas"))
+  setNames(c("year", "series", "gas")) %>%
+  select(-series)
 UKgas_tidy
 ```
 
-    #> Source: local data frame [108 x 3]
+    #> Source: local data frame [108 x 2]
     #> 
-    #>       year series   gas
-    #>      (dbl)  (chr) (dbl)
-    #> 1  1960.00      x 160.1
-    #> 2  1960.25      x 129.7
-    #> 3  1960.50      x  84.8
-    #> 4  1960.75      x 120.1
-    #> 5  1961.00      x 160.1
-    #> 6  1961.25      x 124.9
-    #> 7  1961.50      x  84.8
-    #> 8  1961.75      x 116.9
-    #> 9  1962.00      x 169.7
-    #> 10 1962.25      x 140.9
-    #> ..     ...    ...   ...
+    #>       year   gas
+    #>      (dbl) (dbl)
+    #> 1  1960.00 160.1
+    #> 2  1960.25 129.7
+    #> 3  1960.50  84.8
+    #> 4  1960.75 120.1
+    #> 5  1961.00 160.1
+    #> 6  1961.25 124.9
+    #> 7  1961.50  84.8
+    #> 8  1961.75 116.9
+    #> 9  1962.00 169.7
+    #> 10 1962.25 140.9
+    #> ..     ...   ...
 
 USAccDeaths
 -----------
@@ -1977,25 +2038,26 @@ USAccDeaths
 ``` r
 USAccDeaths_tidy <- USAccDeaths %>%
   tidytime() %>%
-  setNames(c("year", "series", "deaths"))
+  setNames(c("year", "series", "deaths")) %>%
+  select(-series)
 USAccDeaths_tidy
 ```
 
-    #> Source: local data frame [72 x 3]
+    #> Source: local data frame [72 x 2]
     #> 
-    #>        year series deaths
-    #>       (dbl)  (chr)  (dbl)
-    #> 1  1973.000      x   9007
-    #> 2  1973.083      x   8106
-    #> 3  1973.167      x   8928
-    #> 4  1973.250      x   9137
-    #> 5  1973.333      x  10017
-    #> 6  1973.417      x  10826
-    #> 7  1973.500      x  11317
-    #> 8  1973.583      x  10744
-    #> 9  1973.667      x   9713
-    #> 10 1973.750      x   9938
-    #> ..      ...    ...    ...
+    #>        year deaths
+    #>       (dbl)  (dbl)
+    #> 1  1973.000   9007
+    #> 2  1973.083   8106
+    #> 3  1973.167   8928
+    #> 4  1973.250   9137
+    #> 5  1973.333  10017
+    #> 6  1973.417  10826
+    #> 7  1973.500  11317
+    #> 8  1973.583  10744
+    #> 9  1973.667   9713
+    #> 10 1973.750   9938
+    #> ..      ...    ...
 
 USArrests
 ---------
@@ -2096,33 +2158,34 @@ uspop
 ``` r
 uspop_tidy <- uspop %>%
   tidytime() %>%
-  setNames(c("year", "series", "pop"))
+  setNames(c("year", "series", "pop")) %>%
+  select(-series)
 uspop_tidy
 ```
 
-    #> Source: local data frame [19 x 3]
+    #> Source: local data frame [19 x 2]
     #> 
-    #>     year series    pop
-    #>    (dbl)  (chr)  (dbl)
-    #> 1   1790      x   3.93
-    #> 2   1800      x   5.31
-    #> 3   1810      x   7.24
-    #> 4   1820      x   9.64
-    #> 5   1830      x  12.90
-    #> 6   1840      x  17.10
-    #> 7   1850      x  23.20
-    #> 8   1860      x  31.40
-    #> 9   1870      x  39.80
-    #> 10  1880      x  50.20
-    #> 11  1890      x  62.90
-    #> 12  1900      x  76.00
-    #> 13  1910      x  92.00
-    #> 14  1920      x 105.70
-    #> 15  1930      x 122.80
-    #> 16  1940      x 131.70
-    #> 17  1950      x 151.30
-    #> 18  1960      x 179.30
-    #> 19  1970      x 203.20
+    #>     year    pop
+    #>    (dbl)  (dbl)
+    #> 1   1790   3.93
+    #> 2   1800   5.31
+    #> 3   1810   7.24
+    #> 4   1820   9.64
+    #> 5   1830  12.90
+    #> 6   1840  17.10
+    #> 7   1850  23.20
+    #> 8   1860  31.40
+    #> 9   1870  39.80
+    #> 10  1880  50.20
+    #> 11  1890  62.90
+    #> 12  1900  76.00
+    #> 13  1910  92.00
+    #> 14  1920 105.70
+    #> 15  1930 122.80
+    #> 16  1940 131.70
+    #> 17  1950 151.30
+    #> 18  1960 179.30
+    #> 19  1970 203.20
 
 VADeaths
 --------
@@ -2278,22 +2341,23 @@ WWWusage
 ``` r
 WWWusage_tidy <- WWWusage %>%
   tidytime() %>%
-  setNames(c("time", "series", "users"))
+  setNames(c("time", "series", "users")) %>%
+  select(-series)
 WWWusage_tidy
 ```
 
-    #> Source: local data frame [100 x 3]
+    #> Source: local data frame [100 x 2]
     #> 
-    #>     time series users
-    #>    (dbl)  (chr) (dbl)
-    #> 1      1      x    88
-    #> 2      2      x    84
-    #> 3      3      x    85
-    #> 4      4      x    85
-    #> 5      5      x    84
-    #> 6      6      x    85
-    #> 7      7      x    83
-    #> 8      8      x    85
-    #> 9      9      x    88
-    #> 10    10      x    89
-    #> ..   ...    ...   ...
+    #>     time users
+    #>    (dbl) (dbl)
+    #> 1      1    88
+    #> 2      2    84
+    #> 3      3    85
+    #> 4      4    85
+    #> 5      5    84
+    #> 6      6    85
+    #> 7      7    83
+    #> 8      8    85
+    #> 9      9    88
+    #> 10    10    89
+    #> ..   ...   ...

@@ -98,7 +98,8 @@ head(anscombe_tidy)
 ```{r austres}
 austres_tidy <- austres %>%
   tidytime() %>%
-  setNames(c("year", "series","residents"))
+  setNames(c("year", "series","residents")) %>%
+  select(-series)
 austres_tidy
 ```
 
@@ -139,7 +140,8 @@ beavers_tidy
 
 ```{r BJsales}
 BJsales_tidy <- BJsales %>%
-  tidytime() 
+  tidytime() %>%
+  select(-series)
 BJsales_tidy
 ```
 
@@ -147,7 +149,8 @@ BJsales_tidy
 
 ```{r BJsales.lead}
 BJsales.lead_tidy <- BJsales.lead%>%
-  tidytime() 
+  tidytime() %>%
+  select(-series)
 BJsales.lead_tidy
 ```
 
@@ -194,7 +197,8 @@ head(CO2)
 ```{r co2}
 co2_tidy <- co2 %>%
   tidytime() %>%
-  setNames(c("year", "series", "co2"))
+  setNames(c("year", "series", "co2")) %>%
+  select(-series)
 co2_tidy
 ```
 
@@ -213,7 +217,8 @@ crimtab_tidy
 ```{r discoveries}
 discoveries_tidy <- discoveries %>%
   tidytime() %>%
-  setNames(c("year", "series", "disc"))
+  setNames(c("year", "series", "disc")) %>%
+  select(-series)
 discoveries_tidy
 ```
 
@@ -235,7 +240,8 @@ head(esoph)
 
 ```{r euro}
 euro_tidy<- euro %>%
-  data_frame(country = names(euro))
+  data_frame(country = names(euro)) %>%
+  setNames(c("rate", "country"))
 head(euro_tidy)
 ```
 
@@ -261,7 +267,8 @@ head(eurodist)
 
 ```{r EuStockMarkets}
 EuStockMarkets_tidy <- EuStockMarkets %>%
-  tidytime()
+  tidytime() %>%
+  setNames(c("year", "country", "value"))
 EuStockMarkets_tidy
 ```
 
@@ -276,7 +283,9 @@ head(faithful)
 
 ```{r fdeaths}
 fdeaths_tidy <- fdeaths %>%
-  tidytime()
+  tidytime() %>%
+  select(-series) %>%
+  setNames(c("year", "deaths"))
 fdeaths_tidy  
 ```
 
@@ -365,8 +374,9 @@ head(iris)
 ## iris3
 
 ```{r iris3}
-# 'iris3' is already tidy
-head(iris3)
+iris3_tidy <- iris3 %>%
+  as.data.frame()
+head(iris3_tidy)
 
 ```
 
@@ -386,7 +396,9 @@ islands_tidy
 
 ```{r JohnsonJohnson}
 JohnsonJohnson_tidy <- JohnsonJohnson %>%
-  tidytime()
+  tidytime() %>%
+  select(-series) %>%
+  setNames(c("year", "sales"))
 JohnsonJohnson_tidy
 ```
 
@@ -395,7 +407,8 @@ JohnsonJohnson_tidy
 ```{r LakeHuron}
 LakeHuron_tidy <- LakeHuron %>%
   tidytime() %>%
-  setNames(c("year", "series", "level_ft"))
+  setNames(c("year", "series", "level_ft")) %>%
+  select(-series)
 LakeHuron_tidy
 ```
 
@@ -413,7 +426,8 @@ ldeaths_tidy
 ```{r lh}
 lh_tidy <- lh %>%
   tidytime() %>%
-  setNames(c("time_min", "series", "lh"))
+  setNames(c("time_min", "series", "lh")) %>%
+  select(-series)
 lh_tidy
 ```
 
@@ -446,7 +460,8 @@ head(longley)
 ```{r lynx}
 lynx_tidy <- lynx %>%
   tidytime() %>%
-  setNames(c("year", "series", "trappings"))
+  setNames(c("year", "series", "trappings")) %>%
+  select(-series)
 lynx_tidy
 ```
 
@@ -455,7 +470,8 @@ lynx_tidy
 ```{r mdeaths}
 mdeaths_tidy <- mdeaths %>%
   tidytime() %>%
-  setNames(c("year", "series", "deaths"))
+  setNames(c("year", "series", "deaths")) %>%
+  select(-series)
 mdeaths_tidy
 ```
 
@@ -479,7 +495,8 @@ mtcars_tidy
 ```{r nhtemp}
 nhtemp_tidy <- nhtemp %>%
   tidytime() %>%
-  setNames(c("year", "series", "temp_F"))
+  setNames(c("year", "series", "temp_F")) %>%
+  select(-series)
 nhtemp_tidy
 ```
 
@@ -488,7 +505,8 @@ nhtemp_tidy
 ```{r Nile}
 Nile_tidy <- Nile %>%
   tidytime() %>%
-  setNames(c("year", "series", "flow"))
+  setNames(c("year", "series", "flow")) %>%
+  select(-series)
 Nile_tidy
 ```
 
@@ -497,7 +515,8 @@ Nile_tidy
 ```{r nottem}
 nottem_tidy <- nottem %>%
   tidytime() %>%
-  setNames(c("year", "series", "temp_F"))
+  setNames(c("year", "series", "temp_F")) %>%
+  select(-series)
 nottem_tidy
 ```
 
@@ -536,9 +555,11 @@ head(PlantGrowth)
 ## precip
 
 ```{r precip}
-# how to get town names?
-head(precip)
-
+precip_tidy <- precip %>%
+  data.frame("city" = names(precip), "precip" = as.numeric(precip)) %>%
+  select(city, precip) %>%
+  arrange(city)
+head(precip_tidy)
 ```
 
 ## presidents
@@ -546,7 +567,8 @@ head(precip)
 ```{r presidents}
 presidents_tidy <- presidents %>%
   tidytime() %>%
-  setNames(c("year", "series", "rating"))
+  setNames(c("year", "series", "rating")) %>%
+  select(-series)
 presidents_tidy
 ```
 
@@ -687,7 +709,8 @@ states_tidy
 ```{r sunspot.month}
 sunspot.month_tidy <- sunspot.month %>%
   tidytime() %>%
-  setNames(c("year", "series", "sunspots"))
+  setNames(c("year", "series", "sunspots")) %>%
+  select(-series)
 sunspot.month_tidy
 ```
 
@@ -696,7 +719,8 @@ sunspot.month_tidy
 ```{r sunspot.year}
 sunspot.year_tidy <- sunspot.year %>%
   tidytime() %>%
-  setNames(c("year", "series", "sunspots"))
+  setNames(c("year", "series", "sunspots")) %>%
+  select(-series)
 sunspot.year_tidy
 ```
 
@@ -705,7 +729,8 @@ sunspot.year_tidy
 ```{r sunspots}
 sunspots_tidy <- sunspots %>%
   tidytime() %>%
-  setNames(c("year", "series", "sunspots"))
+  setNames(c("year", "series", "sunspots")) %>%
+  select(-series)
 sunspots_tidy
 ```
 
@@ -744,7 +769,8 @@ head(ToothGrowth)
 ```{r treering}
 treering_tidy <- treering %>%
   tidytime() %>%
-  setNames(c("year", "series", "width"))
+  setNames(c("year", "series", "width")) %>%
+  select(-series)
 treering_tidy
 ```
 
@@ -771,7 +797,8 @@ UCBAdmissions_tidy
 ```{r UKDriverDeaths}
 UKDriverDeaths_tidy <- UKDriverDeaths %>%
   tidytime() %>%
-  setNames(c("year", "series", "deaths"))
+  setNames(c("year", "series", "deaths")) %>%
+  select(-series)
 UKDriverDeaths_tidy
 ```
 
@@ -780,7 +807,8 @@ UKDriverDeaths_tidy
 ```{r UKgas}
 UKgas_tidy <- UKgas %>%
   tidytime() %>%
-  setNames(c("year", "series", "gas"))
+  setNames(c("year", "series", "gas")) %>%
+  select(-series)
 UKgas_tidy
 ```
 
@@ -789,7 +817,8 @@ UKgas_tidy
 ```{r USAccDeaths}
 USAccDeaths_tidy <- USAccDeaths %>%
   tidytime() %>%
-  setNames(c("year", "series", "deaths"))
+  setNames(c("year", "series", "deaths")) %>%
+  select(-series)
 USAccDeaths_tidy
 ```
 
@@ -833,7 +862,8 @@ USPersonalExpenditure_tidy
 ```{r uspop}
 uspop_tidy <- uspop %>%
   tidytime() %>%
-  setNames(c("year", "series", "pop"))
+  setNames(c("year", "series", "pop")) %>%
+  select(-series)
 uspop_tidy
 ```
 
@@ -881,7 +911,7 @@ WPs_tidy
 ```{r WWWusage}
 WWWusage_tidy <- WWWusage %>%
   tidytime() %>%
-  setNames(c("time", "series", "users"))
+  setNames(c("time", "series", "users")) %>%
+  select(-series)
 WWWusage_tidy
-
 ```
