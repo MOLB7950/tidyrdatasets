@@ -40,7 +40,7 @@ ability.cov_tidy <- ability.cov %>%
   select(-cov) %>%
   tbl_df()
 
-ability.cov_tidy 
+head(ability.cov_tidy)
 ```
 
 ## airmiles
@@ -52,7 +52,7 @@ airmiles_tidy <- airmiles %>%
   mutate(year = time(airmiles)) %>%
   tbl_df()
 
-airmiles_tidy
+head(airmiles_tidy)
 ```
 
 ## AirPassengers
@@ -70,7 +70,7 @@ AirPassengers_tidy <- AirPassengers_df %>%
   separate(year, c("x", "year"), sep = 1) %>%
   select(-x)
 
-AirPassengers_tidy
+head(AirPassengers_tidy)
 ```
 
 ## airquality
@@ -100,7 +100,7 @@ austres_tidy <- austres %>%
   tidytime() %>%
   setNames(c("year", "series","residents")) %>%
   select(-series)
-austres_tidy
+head(austres_tidy)
 ```
 
 ## attenu
@@ -133,7 +133,7 @@ beaver2_tidy <- beaver2 %>%
 
 beavers_tidy <- rbind_list(beaver1_tidy, beaver2_tidy)
 
-beavers_tidy
+head(beavers_tidy)
 ```
 
 ## BJsales
@@ -142,7 +142,7 @@ beavers_tidy
 BJsales_tidy <- BJsales %>%
   tidytime() %>%
   select(-series)
-BJsales_tidy
+head(BJsales_tidy)
 ```
 
 ## BJsales.lead
@@ -151,7 +151,7 @@ BJsales_tidy
 BJsales.lead_tidy <- BJsales.lead%>%
   tidytime() %>%
   select(-series)
-BJsales.lead_tidy
+head(BJsales.lead_tidy)
 ```
 
 ## BOD
@@ -175,7 +175,7 @@ ChickWeight_tidy <- ChickWeight %>%
   gather(key, value, -Chick, convert = TRUE) %>%
   tbl_df
 
-ChickWeight_tidy
+head(ChickWeight_tidy)
 ```
 
 ## chickwts
@@ -199,7 +199,7 @@ co2_tidy <- co2 %>%
   tidytime() %>%
   setNames(c("year", "series", "co2")) %>%
   select(-series)
-co2_tidy
+head(co2_tidy)
 ```
 
 ## crimtab
@@ -209,7 +209,7 @@ crimtab_tidy <- crimtab %>%
   as.data.frame() %>%
   setNames(c("finger_len", "bod_height","count")) %>%
   tbl_df()
-crimtab_tidy
+head(crimtab_tidy)
 ```
 
 ## discoveries
@@ -219,7 +219,7 @@ discoveries_tidy <- discoveries %>%
   tidytime() %>%
   setNames(c("year", "series", "disc")) %>%
   select(-series)
-discoveries_tidy
+head(discoveries_tidy)
 ```
 
 ## DNase
@@ -274,7 +274,7 @@ head(eurodist_tidy)
 EuStockMarkets_tidy <- EuStockMarkets %>%
   tidytime() %>%
   setNames(c("year", "country", "value"))
-EuStockMarkets_tidy
+head(EuStockMarkets_tidy)
 ```
 
 ## faithful
@@ -291,7 +291,7 @@ fdeaths_tidy <- fdeaths %>%
   tidytime() %>%
   select(-series) %>%
   setNames(c("year", "deaths"))
-fdeaths_tidy  
+head(fdeaths_tidy)
 ```
 
 ## Formaldehyde
@@ -328,7 +328,7 @@ head(freeny)
 HairEyeColor_tidy <- HairEyeColor %>%
   as.data.frame() %>%
   tbl_df()
-HairEyeColor_tidy
+head(HairEyeColor_tidy)
 ```
 
 ## Harman23.cor
@@ -395,7 +395,7 @@ islands_tidy <- islands %>%
   mutate(island = row.names(.)) %>%
   select(2,1) %>%
   tbl_df()
-islands_tidy
+head(islands_tidy)
 ```
 
 ## JohnsonJohnson
@@ -405,7 +405,7 @@ JohnsonJohnson_tidy <- JohnsonJohnson %>%
   tidytime() %>%
   select(-series) %>%
   setNames(c("year", "sales"))
-JohnsonJohnson_tidy
+head(JohnsonJohnson_tidy)
 ```
 
 ## LakeHuron
@@ -415,7 +415,7 @@ LakeHuron_tidy <- LakeHuron %>%
   tidytime() %>%
   setNames(c("year", "series", "level_ft")) %>%
   select(-series)
-LakeHuron_tidy
+head(LakeHuron_tidy)
 ```
 
 ## ldeaths
@@ -424,7 +424,7 @@ LakeHuron_tidy
 ldeaths_tidy <- ldeaths %>%
   tidytime() %>%
   setNames(c("year", "series", "deaths"))
-ldeaths_tidy
+head(ldeaths_tidy)
 ```
 
 ## lh
@@ -434,7 +434,7 @@ lh_tidy <- lh %>%
   tidytime() %>%
   setNames(c("time_min", "series", "lh")) %>%
   select(-series)
-lh_tidy
+head(lh_tidy)
 ```
 
 ## LifeCycleSavings
@@ -443,7 +443,7 @@ LifeCycleSavings_tidy <- LifeCycleSavings %>%
   mutate(country = row.names(.)) %>%
   select(6,1,2,3,4,5) %>%
   tbl_df()
-LifeCycleSavings_tidy
+head(LifeCycleSavings_tidy)
 ```
 
 ## Loblolly
@@ -452,7 +452,7 @@ Loblolly_tidy <- Loblolly %>%
   mutate(tree_num = row.names(.)) %>%
   select(4,1,2,3) %>%
   tbl_df()
-Loblolly_tidy
+head(Loblolly_tidy)
 ```
 
 ## longley
@@ -468,7 +468,7 @@ lynx_tidy <- lynx %>%
   tidytime() %>%
   setNames(c("year", "series", "trappings")) %>%
   select(-series)
-lynx_tidy
+head(lynx_tidy)
 ```
 
 ## mdeaths
@@ -478,7 +478,7 @@ mdeaths_tidy <- mdeaths %>%
   tidytime() %>%
   setNames(c("year", "series", "deaths")) %>%
   select(-series)
-mdeaths_tidy
+head(mdeaths_tidy)
 ```
 
 ## morley
@@ -491,9 +491,8 @@ head(morley)
 ```{r mtcars}
 mtcars_tidy <- mtcars %>%
   mutate(car = row.names(.)) %>%
-  select(12,1:11) %>%
-  tbl_df()
-mtcars_tidy
+  select(12,1:11) 
+head(mtcars_tidy)
 ```
 
 ## nhtemp
@@ -503,7 +502,7 @@ nhtemp_tidy <- nhtemp %>%
   tidytime() %>%
   setNames(c("year", "series", "temp_F")) %>%
   select(-series)
-nhtemp_tidy
+head(nhtemp_tidy)
 ```
 
 ## Nile
@@ -513,7 +512,7 @@ Nile_tidy <- Nile %>%
   tidytime() %>%
   setNames(c("year", "series", "flow")) %>%
   select(-series)
-Nile_tidy
+head(Nile_tidy)
 ```
 
 ## nottem
@@ -523,7 +522,7 @@ nottem_tidy <- nottem %>%
   tidytime() %>%
   setNames(c("year", "series", "temp_F")) %>%
   select(-series)
-nottem_tidy
+head(nottem_tidy)
 ```
 
 ## npk
@@ -577,7 +576,7 @@ presidents_tidy <- presidents %>%
   tidytime() %>%
   setNames(c("year", "series", "rating")) %>%
   select(-series)
-presidents_tidy
+head(presidents_tidy)
 ```
 
 ## pressure
@@ -611,18 +610,16 @@ rivers_tidy <- rivers %>%
   as.data.frame() %>%
   setNames("length_mi") %>%
   mutate(river_num = seq_len(n())) %>%
-  select(2,1) %>%
-  tbl_df()
-rivers_tidy
+  select(2,1) 
+head(rivers_tidy)
 ```
 
 ## rock
 ```{r rock}
 rock_tidy <- rock %>%
   mutate(samp_num = seq_len(n())) %>%
-  select(5,1:4) %>%
-  tbl_df()
-rock_tidy
+  select(5,1:4)
+head(rock_tidy)
 ```
 
 ## sleep
@@ -705,9 +702,8 @@ state.x77_tidy <- state.x77 %>%
   mutate(state = row.names(.)) %>%
   select(9,1:8)
 
-states_tidy <- cbind(state.abb_tidy, state.area_tidy, state.center_tidy, state.division_tidy, state.region_tidy, state.x77_tidy) %>%
-  tbl_df()
-states_tidy
+states_tidy <- cbind(state.abb_tidy, state.area_tidy, state.center_tidy, state.division_tidy, state.region_tidy, state.x77_tidy)
+head(states_tidy)
 ```
 
 ## sunspot.month
@@ -717,7 +713,7 @@ sunspot.month_tidy <- sunspot.month %>%
   tidytime() %>%
   setNames(c("year", "series", "sunspots")) %>%
   select(-series)
-sunspot.month_tidy
+head(sunspot.month_tidy)
 ```
 
 ## sunspot.year
@@ -727,7 +723,7 @@ sunspot.year_tidy <- sunspot.year %>%
   tidytime() %>%
   setNames(c("year", "series", "sunspots")) %>%
   select(-series)
-sunspot.year_tidy
+head(sunspot.year_tidy)
 ```
 
 ## sunspots
@@ -737,7 +733,7 @@ sunspots_tidy <- sunspots %>%
   tidytime() %>%
   setNames(c("year", "series", "sunspots")) %>%
   select(-series)
-sunspots_tidy
+head(sunspots_tidy)
 ```
 
 ## swiss
@@ -746,7 +742,7 @@ swiss_tidy <- swiss %>%
   mutate(region = rownames(.)) %>%
   select(7,1:6) %>%
   tbl_df()
-swiss_tidy
+head(swiss_tidy)
 ```
 
 ## Theoph
@@ -761,7 +757,7 @@ head(Theoph)
 Titanic_tidy <- Titanic %>%
   as.data.frame() %>%
   tbl_df()
-Titanic_tidy
+head(Titanic_tidy)
 ```
 
 ## ToothGrowth
@@ -777,7 +773,7 @@ treering_tidy <- treering %>%
   tidytime() %>%
   setNames(c("year", "series", "width")) %>%
   select(-series)
-treering_tidy
+head(treering_tidy)
 ```
 
 ## trees
@@ -786,7 +782,7 @@ trees_tidy <- trees %>%
   mutate(tree_num = seq_len(n())) %>%
   select(4,1:3) %>%
   tbl_df()
-trees_tidy
+head(trees_tidy)
 ```
 
 ## UCBAdmissions
@@ -795,7 +791,7 @@ trees_tidy
 UCBAdmissions_tidy <- UCBAdmissions %>%
   as.data.frame() %>%
   tbl_df()
-UCBAdmissions_tidy
+head(UCBAdmissions_tidy)
 ```
 
 ## UKDriverDeaths
@@ -805,7 +801,7 @@ UKDriverDeaths_tidy <- UKDriverDeaths %>%
   tidytime() %>%
   setNames(c("year", "series", "deaths")) %>%
   select(-series)
-UKDriverDeaths_tidy
+head(UKDriverDeaths_tidy)
 ```
 
 ## UKgas
@@ -815,7 +811,7 @@ UKgas_tidy <- UKgas %>%
   tidytime() %>%
   setNames(c("year", "series", "gas")) %>%
   select(-series)
-UKgas_tidy
+head(UKgas_tidy)
 ```
 
 ## USAccDeaths
@@ -825,7 +821,7 @@ USAccDeaths_tidy <- USAccDeaths %>%
   tidytime() %>%
   setNames(c("year", "series", "deaths")) %>%
   select(-series)
-USAccDeaths_tidy
+head(USAccDeaths_tidy)
 ```
 
 ## USArrests
@@ -834,7 +830,7 @@ USArrests_tidy <- USArrests %>%
   mutate(state = rownames(.)) %>%
   select(5,1:4) %>%
   tbl_df()
-USArrests_tidy
+head(USArrests_tidy)
 ```
 
 ## UScitiesD
@@ -855,7 +851,7 @@ USJudgeRatings_tidy <- USJudgeRatings %>%
   mutate(judge= rownames(.)) %>%
   select(13,1:12) %>%
   tbl_df()
-USJudgeRatings_tidy
+head(USJudgeRatings_tidy)
 ```
 
 ## USPersonalExpenditure
@@ -865,7 +861,7 @@ USPersonalExpenditure_tidy <- USPersonalExpenditure %>%
   mutate(group = rownames(.)) %>%
   gather(year, expense, -group) %>%
   tbl_df()
-USPersonalExpenditure_tidy
+head(USPersonalExpenditure_tidy)
 ```
 
 ## uspop
@@ -875,7 +871,7 @@ uspop_tidy <- uspop %>%
   tidytime() %>%
   setNames(c("year", "series", "pop")) %>%
   select(-series)
-uspop_tidy
+head(uspop_tidy)
 ```
 
 ## VADeaths
@@ -885,7 +881,7 @@ VADeaths_tidy <- VADeaths %>%
   mutate(age = rownames(.)) %>%
   gather(demographic, deaths, -age) %>%
   tbl_df()
-VADeaths_tidy
+head(VADeaths_tidy)
 ```
 
 ## volcano
@@ -919,7 +915,7 @@ WPs_tidy <- WorldPhones %>%
   mutate(year = rownames(.)) %>%
   gather(continent, value, -year) %>%
   tbl_df()
-WPs_tidy
+head(WPs_tidy)
 ```
 
 ## WWWusage
@@ -929,5 +925,5 @@ WWWusage_tidy <- WWWusage %>%
   tidytime() %>%
   setNames(c("time", "series", "users")) %>%
   select(-series)
-WWWusage_tidy
+head(WWWusage_tidy)
 ```
