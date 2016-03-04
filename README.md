@@ -130,6 +130,8 @@ ability.cov_tidy <- ability.cov %>%
   select(-n.obs, -center) %>%
   mutate(test = rownames(.)) %>%
   gather(cov, value, -test) %>%
+  separate(cov, c("cov", "cat")) %>%
+  select(-cov) %>%
   tbl_df()
 
 ability.cov_tidy 
@@ -137,19 +139,19 @@ ability.cov_tidy
 
     #> Source: local data frame [36 x 3]
     #> 
-    #>       test         cov  value
-    #>      (chr)       (chr)  (dbl)
-    #> 1  general cov.general 24.641
-    #> 2  picture cov.general  5.991
-    #> 3   blocks cov.general 33.520
-    #> 4     maze cov.general  6.023
-    #> 5  reading cov.general 20.755
-    #> 6    vocab cov.general 29.701
-    #> 7  general cov.picture  5.991
-    #> 8  picture cov.picture  6.700
-    #> 9   blocks cov.picture 18.137
-    #> 10    maze cov.picture  1.782
-    #> ..     ...         ...    ...
+    #>       test     cat  value
+    #>      (chr)   (chr)  (dbl)
+    #> 1  general general 24.641
+    #> 2  picture general  5.991
+    #> 3   blocks general 33.520
+    #> 4     maze general  6.023
+    #> 5  reading general 20.755
+    #> 6    vocab general 29.701
+    #> 7  general picture  5.991
+    #> 8  picture picture  6.700
+    #> 9   blocks picture 18.137
+    #> 10    maze picture  1.782
+    #> ..     ...     ...    ...
 
 airmiles
 --------
@@ -192,7 +194,9 @@ AirPassengers_df <- tbl_df(data.frame(matrix(AirPassengers, 12, dimnames = dmn))
 
 AirPassengers_tidy <- AirPassengers_df %>%
   mutate(month = rownames(.)) %>%
-  gather(year, value, -month)
+  gather(year, value, -month) %>%
+  separate(year, c("x", "year"), sep = 1) %>%
+  select(-x)
 
 AirPassengers_tidy
 ```
@@ -201,16 +205,16 @@ AirPassengers_tidy
     #> 
     #>    month  year value
     #>    (chr) (chr) (dbl)
-    #> 1      1 X1949   112
-    #> 2      2 X1949   118
-    #> 3      3 X1949   132
-    #> 4      4 X1949   129
-    #> 5      5 X1949   121
-    #> 6      6 X1949   135
-    #> 7      7 X1949   148
-    #> 8      8 X1949   148
-    #> 9      9 X1949   136
-    #> 10    10 X1949   119
+    #> 1      1  1949   112
+    #> 2      2  1949   118
+    #> 3      3  1949   132
+    #> 4      4  1949   129
+    #> 5      5  1949   121
+    #> 6      6  1949   135
+    #> 7      7  1949   148
+    #> 8      8  1949   148
+    #> 9      9  1949   136
+    #> 10    10  1949   119
     #> ..   ...   ...   ...
 
 airquality
@@ -218,7 +222,16 @@ airquality
 
 ``` r
 # 'airquality' is already tidy
+head(airquality)
 ```
+
+    #>   Ozone Solar.R Wind Temp Month Day
+    #> 1    41     190  7.4   67     5   1
+    #> 2    36     118  8.0   72     5   2
+    #> 3    12     149 12.6   74     5   3
+    #> 4    18     313 11.5   62     5   4
+    #> 5    NA      NA 14.3   56     5   5
+    #> 6    28      NA 14.9   66     5   6
 
 anscombe
 --------
@@ -230,7 +243,17 @@ anscombe_tidy <- anscombe %>%
   separate(key, into = c("var", "set"), sep=1) %>%
   spread(var, value) %>%
   arrange(set, obs)
+
+head(anscombe_tidy)
 ```
+
+    #>   obs set  x    y
+    #> 1   1   1 10 8.04
+    #> 2   2   1  8 6.95
+    #> 3   3   1 13 7.58
+    #> 4   4   1  9 8.81
+    #> 5   5   1 11 8.33
+    #> 6   6   1 14 9.96
 
 austres
 -------
@@ -263,14 +286,32 @@ attenu
 
 ``` r
 # `attenu` already tidy
+head(attenu)
 ```
+
+    #>   event mag station dist accel
+    #> 1     1 7.0     117   12 0.359
+    #> 2     2 7.4    1083  148 0.014
+    #> 3     2 7.4    1095   42 0.196
+    #> 4     2 7.4     283   85 0.135
+    #> 5     2 7.4     135  107 0.062
+    #> 6     2 7.4     475  109 0.054
 
 attitude
 --------
 
 ``` r
 # 'attitude' is already tidy
+head(attitude)
 ```
+
+    #>   rating complaints privileges learning raises critical advance
+    #> 1     43         51         30       39     61       92      45
+    #> 2     63         64         51       54     63       73      47
+    #> 3     71         70         68       69     76       86      48
+    #> 4     61         63         45       47     54       84      35
+    #> 5     81         78         56       66     71       83      47
+    #> 6     43         55         49       44     54       49      34
 
 beavers
 -------
@@ -363,14 +404,32 @@ BOD
 
 ``` r
 # 'BOD' is already tidy
+head(BOD)
 ```
+
+    #>   Time demand
+    #> 1    1    8.3
+    #> 2    2   10.3
+    #> 3    3   19.0
+    #> 4    4   16.0
+    #> 5    5   15.6
+    #> 6    7   19.8
 
 cars
 ----
 
 ``` r
 # 'cars' is already tidy
+head(cars)
 ```
+
+    #>   speed dist
+    #> 1     4    2
+    #> 2     4   10
+    #> 3     7    4
+    #> 4     7   22
+    #> 5     8   16
+    #> 6     9   10
 
 ChickWeight
 -----------
@@ -404,14 +463,32 @@ chickwts
 
 ``` r
 # `chickwts` already tidy
+head(chickwts)
 ```
+
+    #>   weight      feed
+    #> 1    179 horsebean
+    #> 2    160 horsebean
+    #> 3    136 horsebean
+    #> 4    227 horsebean
+    #> 5    217 horsebean
+    #> 6    168 horsebean
 
 CO2
 ---
 
 ``` r
 # `CO2` already tidy
+head(CO2)
 ```
+
+    #>   Plant   Type  Treatment conc uptake
+    #> 1   Qn1 Quebec nonchilled   95   16.0
+    #> 2   Qn1 Quebec nonchilled  175   30.4
+    #> 3   Qn1 Quebec nonchilled  250   34.8
+    #> 4   Qn1 Quebec nonchilled  350   37.2
+    #> 5   Qn1 Quebec nonchilled  500   35.3
+    #> 6   Qn1 Quebec nonchilled  675   39.2
 
 co2
 ---
@@ -497,14 +574,32 @@ DNase
 
 ``` r
 # `DNase` already tidy
+head(DNase)
 ```
+
+    #>   Run       conc density
+    #> 1   1 0.04882812   0.017
+    #> 2   1 0.04882812   0.018
+    #> 3   1 0.19531250   0.121
+    #> 4   1 0.19531250   0.124
+    #> 5   1 0.39062500   0.206
+    #> 6   1 0.39062500   0.215
 
 esoph
 -----
 
 ``` r
 # `esoph` already tidy
+head(esoph)
 ```
+
+    #>   agegp     alcgp    tobgp ncases ncontrols
+    #> 1 25-34 0-39g/day 0-9g/day      0        40
+    #> 2 25-34 0-39g/day    10-19      0        10
+    #> 3 25-34 0-39g/day    20-29      0         6
+    #> 4 25-34 0-39g/day      30+      0         5
+    #> 5 25-34     40-79 0-9g/day      0        27
+    #> 6 25-34     40-79    10-19      0         7
 
 euro
 ----
@@ -551,7 +646,10 @@ eurodist
 
 ``` r
 #? class dist
+head(eurodist)
 ```
+
+    #> [1] 3313 2963 3175 3339 2762 3276
 
 EuStockMarkets
 --------------
@@ -583,7 +681,16 @@ faithful
 
 ``` r
 # `faithful` already tidy
+head(faithful)
 ```
+
+    #>   eruptions waiting
+    #> 1     3.600      79
+    #> 2     1.800      54
+    #> 3     3.333      74
+    #> 4     2.283      62
+    #> 5     4.533      85
+    #> 6     2.883      55
 
 fdeaths
 -------
@@ -615,16 +722,62 @@ Formaldehyde
 
 ``` r
 # `Formaldehyde` already tidy
+head(Formaldehyde)
 ```
+
+    #>   carb optden
+    #> 1  0.1  0.086
+    #> 2  0.3  0.269
+    #> 3  0.5  0.446
+    #> 4  0.6  0.538
+    #> 5  0.7  0.626
+    #> 6  0.9  0.782
 
 freeny
 ------
 
+``` r
+head(freeny)
+```
+
+    #>               y lag.quarterly.revenue price.index income.level
+    #> 1962.25 8.79236               8.79636     4.70997      5.82110
+    #> 1962.5  8.79137               8.79236     4.70217      5.82558
+    #> 1962.75 8.81486               8.79137     4.68944      5.83112
+    #> 1963    8.81301               8.81486     4.68558      5.84046
+    #> 1963.25 8.90751               8.81301     4.64019      5.85036
+    #> 1963.5  8.93673               8.90751     4.62553      5.86464
+    #>         market.potential
+    #> 1962.25          12.9699
+    #> 1962.5           12.9733
+    #> 1962.75          12.9774
+    #> 1963             12.9806
+    #> 1963.25          12.9831
+    #> 1963.5           12.9854
+
 freeny.x
 --------
 
+``` r
+head(freeny.x)
+```
+
+    #>      lag quarterly revenue price index income level market potential
+    #> [1,]               8.79636     4.70997      5.82110          12.9699
+    #> [2,]               8.79236     4.70217      5.82558          12.9733
+    #> [3,]               8.79137     4.68944      5.83112          12.9774
+    #> [4,]               8.81486     4.68558      5.84046          12.9806
+    #> [5,]               8.81301     4.64019      5.85036          12.9831
+    #> [6,]               8.90751     4.62553      5.86464          12.9854
+
 freeny.y
 --------
+
+``` r
+head(freeny.y)
+```
+
+    #> [1] 8.79236 8.79137 8.81486 8.81301 8.90751 8.93673
 
 HairEyeColor
 ------------
@@ -697,34 +850,73 @@ Indometh
 
 ``` r
 # 'Indometh' already tidy
+head(Indometh)
 ```
+
+    #>   Subject time conc
+    #> 1       1 0.25 1.50
+    #> 2       1 0.50 0.94
+    #> 3       1 0.75 0.78
+    #> 4       1 1.00 0.48
+    #> 5       1 1.25 0.37
+    #> 6       1 2.00 0.19
 
 ### infert
 
 ``` r
 # 'infert' already tidy
+head(infert)
 ```
+
+    #>   education age parity induced case spontaneous stratum pooled.stratum
+    #> 1    0-5yrs  26      6       1    1           2       1              3
+    #> 2    0-5yrs  42      1       1    1           0       2              1
+    #> 3    0-5yrs  39      6       2    1           0       3              4
+    #> 4    0-5yrs  34      4       2    1           0       4              2
+    #> 5   6-11yrs  35      3       1    1           1       5             32
+    #> 6   6-11yrs  36      4       2    1           1       6             36
 
 InsectSprays
 ------------
 
 ``` r
 # `InsectSprays` already tidy
+head(InsectSprays)
 ```
+
+    #>   count spray
+    #> 1    10     A
+    #> 2     7     A
+    #> 3    20     A
+    #> 4    14     A
+    #> 5    14     A
+    #> 6    12     A
 
 iris
 ----
 
 ``` r
 # 'iris' is already tidy
+head(iris)
 ```
+
+    #>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+    #> 1          5.1         3.5          1.4         0.2  setosa
+    #> 2          4.9         3.0          1.4         0.2  setosa
+    #> 3          4.7         3.2          1.3         0.2  setosa
+    #> 4          4.6         3.1          1.5         0.2  setosa
+    #> 5          5.0         3.6          1.4         0.2  setosa
+    #> 6          5.4         3.9          1.7         0.4  setosa
 
 iris3
 -----
 
 ``` r
 # 'iris3' is already tidy
+head(iris3)
 ```
+
+    #> [1] 5.1 4.9 4.7 4.6 5.0 5.4
 
 islands
 -------
@@ -917,7 +1109,16 @@ longley
 
 ``` r
 # longley is already tidy
+head(longley)
 ```
+
+    #>      GNP.deflator     GNP Unemployed Armed.Forces Population Year Employed
+    #> 1947         83.0 234.289      235.6        159.0    107.608 1947   60.323
+    #> 1948         88.5 259.426      232.5        145.6    108.632 1948   61.122
+    #> 1949         88.2 258.054      368.2        161.6    109.773 1949   60.171
+    #> 1950         89.5 284.599      335.1        165.0    110.929 1950   61.187
+    #> 1951         96.2 328.975      209.9        309.9    112.075 1951   63.221
+    #> 1952         98.1 346.999      193.2        359.4    113.270 1952   63.639
 
 lynx
 ----
@@ -976,7 +1177,16 @@ morley
 
 ``` r
 # morley is already tidy
+head(morley)
 ```
+
+    #>     Expt Run Speed
+    #> 001    1   1   850
+    #> 002    1   2   740
+    #> 003    1   3   900
+    #> 004    1   4  1070
+    #> 005    1   5   930
+    #> 006    1   6   850
 
 mtcars
 ------
@@ -1089,42 +1299,92 @@ npk
 
 ``` r
 # npk is already tidy
+head(npk)
 ```
+
+    #>   block N P K yield
+    #> 1     1 0 1 1  49.5
+    #> 2     1 1 1 0  62.8
+    #> 3     1 0 0 0  46.8
+    #> 4     1 1 0 1  57.0
+    #> 5     2 1 0 0  59.8
+    #> 6     2 1 1 1  58.5
 
 occupationalStatus
 ------------------
 
 ``` r
 #?
+head(occupationalStatus)
 ```
+
+    #>       destination
+    #> origin  1  2   3   4  5   6   7   8
+    #>      1 50 19  26   8  7  11   6   2
+    #>      2 16 40  34  18 11  20   8   3
+    #>      3 12 35  65  66 35  88  23  21
+    #>      4 11 20  58 110 40 183  64  32
+    #>      5  2  8  12  23 25  46  28  12
+    #>      6 12 28 102 162 90 554 230 177
 
 Orange
 ------
 
 ``` r
 # 'Orange' already tidy
+head(Orange)
 ```
+
+    #>   Tree  age circumference
+    #> 1    1  118            30
+    #> 2    1  484            58
+    #> 3    1  664            87
+    #> 4    1 1004           115
+    #> 5    1 1231           120
+    #> 6    1 1372           142
 
 OrchardSprays
 -------------
 
 ``` r
 # 'OrchardSprays' alreayd tidy
+head(OrchardSprays)
 ```
+
+    #>   decrease rowpos colpos treatment
+    #> 1       57      1      1         D
+    #> 2       95      2      1         E
+    #> 3        8      3      1         B
+    #> 4       69      4      1         H
+    #> 5       92      5      1         G
+    #> 6       90      6      1         F
 
 PlantGrowth
 -----------
 
 ``` r
 # 'PlantGrowth' already tidy
+head(PlantGrowth)
 ```
+
+    #>   weight group
+    #> 1   4.17  ctrl
+    #> 2   5.58  ctrl
+    #> 3   5.18  ctrl
+    #> 4   6.11  ctrl
+    #> 5   4.50  ctrl
+    #> 6   4.61  ctrl
 
 precip
 ------
 
 ``` r
 # how to get town names?
+head(precip)
 ```
+
+    #>      Mobile      Juneau     Phoenix Little Rock Los Angeles  Sacramento 
+    #>        67.0        54.7         7.0        48.5        14.0        17.2
 
 presidents
 ----------
@@ -1157,28 +1417,64 @@ pressure
 
 ``` r
 # 'pressure' is already tidy
+head(pressure)
 ```
+
+    #>   temperature pressure
+    #> 1           0   0.0002
+    #> 2          20   0.0012
+    #> 3          40   0.0060
+    #> 4          60   0.0300
+    #> 5          80   0.0900
+    #> 6         100   0.2700
 
 Puromycin
 ---------
 
 ``` r
 # 'Puromycin' is already tidy
+head(Puromycin)
 ```
+
+    #>   conc rate   state
+    #> 1 0.02   76 treated
+    #> 2 0.02   47 treated
+    #> 3 0.06   97 treated
+    #> 4 0.06  107 treated
+    #> 5 0.11  123 treated
+    #> 6 0.11  139 treated
 
 quakes
 ------
 
 ``` r
 # 'quakes' is already tidy
+head(quakes)
 ```
+
+    #>      lat   long depth mag stations
+    #> 1 -20.42 181.62   562 4.8       41
+    #> 2 -20.62 181.03   650 4.2       15
+    #> 3 -26.00 184.10    42 5.4       43
+    #> 4 -17.97 181.66   626 4.1       19
+    #> 5 -20.42 181.96   649 4.0       11
+    #> 6 -19.68 184.31   195 4.0       12
 
 randu
 -----
 
 ``` r
 # 'randu' is already tidy
+head(randu)
 ```
+
+    #>          x        y        z
+    #> 1 0.000031 0.000183 0.000824
+    #> 2 0.044495 0.155732 0.533939
+    #> 3 0.822440 0.873416 0.838542
+    #> 4 0.322291 0.648545 0.990648
+    #> 5 0.393595 0.826873 0.418881
+    #> 6 0.309097 0.926590 0.777664
 
 rivers
 ------
@@ -1241,20 +1537,56 @@ sleep
 
 ``` r
 # 'sleep' is already tidy
+head(sleep)
 ```
+
+    #>   extra group ID
+    #> 1   0.7     1  1
+    #> 2  -1.6     1  2
+    #> 3  -0.2     1  3
+    #> 4  -1.2     1  4
+    #> 5  -0.1     1  5
+    #> 6   3.4     1  6
 
 stack.loss
 ----------
 
+``` r
+head(stack.loss)
+```
+
+    #> [1] 42 37 37 28 18 18
+
 stack.x
 -------
+
+``` r
+head(stack.x)
+```
+
+    #>      Air.Flow Water.Temp Acid.Conc.
+    #> [1,]       80         27         89
+    #> [2,]       80         27         88
+    #> [3,]       75         25         90
+    #> [4,]       62         24         87
+    #> [5,]       62         22         87
+    #> [6,]       62         23         87
 
 stackloss
 ---------
 
 ``` r
 # 'stackloss' already tidy
+head(stackloss)
 ```
+
+    #>   Air.Flow Water.Temp Acid.Conc. stack.loss
+    #> 1       80         27         89         42
+    #> 2       80         27         88         37
+    #> 3       75         25         90         37
+    #> 4       62         24         87         28
+    #> 5       62         22         87         18
+    #> 6       62         23         87         18
 
 state.abb
 ---------
@@ -1455,7 +1787,16 @@ Theoph
 
 ``` r
 # 'Theoph' is already tidy
+head(Theoph)
 ```
+
+    #>   Subject   Wt Dose Time  conc
+    #> 1       1 79.6 4.02 0.00  0.74
+    #> 2       1 79.6 4.02 0.25  2.84
+    #> 3       1 79.6 4.02 0.57  6.57
+    #> 4       1 79.6 4.02 1.12 10.50
+    #> 5       1 79.6 4.02 2.02  9.66
+    #> 6       1 79.6 4.02 3.82  8.58
 
 Titanic
 -------
@@ -1488,7 +1829,16 @@ ToothGrowth
 
 ``` r
 # 'ToothGrowth' is already tidy
+head(ToothGrowth)
 ```
+
+    #>    len supp dose
+    #> 1  4.2   VC  0.5
+    #> 2 11.5   VC  0.5
+    #> 3  7.3   VC  0.5
+    #> 4  5.8   VC  0.5
+    #> 5  6.4   VC  0.5
+    #> 6 10.0   VC  0.5
 
 treering
 --------
@@ -1679,7 +2029,10 @@ UScitiesD
 
 ``` r
 # class dist
+head(UScitiesD)
 ```
+
+    #> [1]  587 1212  701 1936  604  748
 
 USJudgeRatings
 --------------
@@ -1813,21 +2166,83 @@ volcano
 
 ``` r
 #matrix of topographic info
+head(volcano)
 ```
+
+    #>      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13]
+    #> [1,]  100  100  101  101  101  101  101  100  100   100   101   101   102
+    #> [2,]  101  101  102  102  102  102  102  101  101   101   102   102   103
+    #> [3,]  102  102  103  103  103  103  103  102  102   102   103   103   104
+    #> [4,]  103  103  104  104  104  104  104  103  103   103   103   104   104
+    #> [5,]  104  104  105  105  105  105  105  104  104   103   104   104   105
+    #> [6,]  105  105  105  106  106  106  106  105  105   104   104   105   105
+    #>      [,14] [,15] [,16] [,17] [,18] [,19] [,20] [,21] [,22] [,23] [,24]
+    #> [1,]   102   102   102   103   104   103   102   101   101   102   103
+    #> [2,]   103   103   103   104   105   104   103   102   102   103   105
+    #> [3,]   104   104   104   105   106   105   104   104   105   106   107
+    #> [4,]   104   105   105   106   107   106   106   106   107   108   110
+    #> [5,]   105   105   106   107   108   108   108   109   110   112   114
+    #> [6,]   106   106   107   109   110   110   112   113   115   116   118
+    #>      [,25] [,26] [,27] [,28] [,29] [,30] [,31] [,32] [,33] [,34] [,35]
+    #> [1,]   104   104   105   107   107   107   108   108   110   110   110
+    #> [2,]   106   106   107   109   110   110   110   110   111   112   113
+    #> [3,]   108   110   111   113   114   115   114   115   116   118   119
+    #> [4,]   111   114   117   118   117   119   120   121   122   124   125
+    #> [5,]   115   118   121   122   121   123   128   131   129   130   131
+    #> [6,]   119   121   124   126   126   129   134   137   137   136   136
+    #>      [,36] [,37] [,38] [,39] [,40] [,41] [,42] [,43] [,44] [,45] [,46]
+    #> [1,]   110   110   110   110   110   108   108   108   107   107   108
+    #> [2,]   114   116   115   114   112   110   110   110   109   108   109
+    #> [3,]   119   121   121   120   118   116   114   112   111   110   110
+    #> [4,]   126   127   127   126   124   122   120   117   116   113   111
+    #> [5,]   131   132   132   131   130   128   126   122   119   115   114
+    #> [6,]   135   136   136   136   135   133   129   126   122   118   116
+    #>      [,47] [,48] [,49] [,50] [,51] [,52] [,53] [,54] [,55] [,56] [,57]
+    #> [1,]   108   108   108   108   107   107   107   107   106   106   105
+    #> [2,]   109   109   109   108   108   108   108   107   107   106   106
+    #> [3,]   110   110   109   109   109   109   108   108   107   107   106
+    #> [4,]   110   110   110   109   109   109   109   108   108   107   107
+    #> [5,]   112   110   110   110   110   110   109   109   108   107   107
+    #> [6,]   115   113   111   110   110   110   110   109   108   108   108
+    #>      [,58] [,59] [,60] [,61]
+    #> [1,]   105   104   104   103
+    #> [2,]   105   105   104   104
+    #> [3,]   106   105   105   104
+    #> [4,]   106   106   105   105
+    #> [5,]   107   106   106   105
+    #> [6,]   107   107   106   106
 
 warpbreaks
 ----------
 
 ``` r
 # 'warpbreaks' is already tidy
+head(warpbreaks)
 ```
+
+    #>   breaks wool tension
+    #> 1     26    A       L
+    #> 2     30    A       L
+    #> 3     54    A       L
+    #> 4     25    A       L
+    #> 5     70    A       L
+    #> 6     52    A       L
 
 women
 -----
 
 ``` r
 # 'women' is already tidy
+head(women)
 ```
+
+    #>   height weight
+    #> 1     58    115
+    #> 2     59    117
+    #> 3     60    120
+    #> 4     61    123
+    #> 5     62    126
+    #> 6     63    129
 
 WorldPhones
 -----------

@@ -36,6 +36,8 @@ ability.cov_tidy <- ability.cov %>%
   select(-n.obs, -center) %>%
   mutate(test = rownames(.)) %>%
   gather(cov, value, -test) %>%
+  separate(cov, c("cov", "cat")) %>%
+  select(-cov) %>%
   tbl_df()
 
 ability.cov_tidy 
@@ -64,7 +66,9 @@ AirPassengers_df <- tbl_df(data.frame(matrix(AirPassengers, 12, dimnames = dmn))
 
 AirPassengers_tidy <- AirPassengers_df %>%
   mutate(month = rownames(.)) %>%
-  gather(year, value, -month)
+  gather(year, value, -month) %>%
+  separate(year, c("x", "year"), sep = 1) %>%
+  select(-x)
 
 AirPassengers_tidy
 ```
@@ -73,7 +77,7 @@ AirPassengers_tidy
 
 ```{r airquality}
 # 'airquality' is already tidy
-
+head(airquality)
 ```
 
 ## anscombe
@@ -86,6 +90,7 @@ anscombe_tidy <- anscombe %>%
   spread(var, value) %>%
   arrange(set, obs)
 
+head(anscombe_tidy)
 ```
 
 ## austres
@@ -101,13 +106,14 @@ austres_tidy
 
 ```{r attenu}
 # `attenu` already tidy
-
+head(attenu)
 ```
 
 ## attitude
 
 ```{r attitude}
 # 'attitude' is already tidy
+head(attitude)
 ```
 
 ## beavers
@@ -149,12 +155,14 @@ BJsales.lead_tidy
 
 ```{r BOD}
 # 'BOD' is already tidy
+head(BOD)
 ```
 
 ## cars
 
 ```{r cars}
 # 'cars' is already tidy
+head(cars)
 ```
 
 ## ChickWeight
@@ -171,12 +179,14 @@ ChickWeight_tidy
 
 ```{r chickwts}
 # `chickwts` already tidy
+head(chickwts)
 ```
 
 ## CO2
 
 ```{r CO2}
 # `CO2` already tidy
+head(CO2)
 ```
 
 ## co2
@@ -211,12 +221,14 @@ discoveries_tidy
 
 ```{r DNase}
 # `DNase` already tidy
+head(DNase)
 ```
 
 ## esoph
 
 ```{r esoph}
 # `esoph` already tidy
+head(esoph)
 ```
 
 ## euro
@@ -242,7 +254,7 @@ head(euro.cross_tidy)
 
 ```{r eurodist}
 #? class dist
-
+head(eurodist)
 ```
 
 ## EuStockMarkets
@@ -257,6 +269,7 @@ EuStockMarkets_tidy
 
 ```{r faithful}
 # `faithful` already tidy
+head(faithful)
 ```
 
 ## fdeaths
@@ -271,25 +284,26 @@ fdeaths_tidy
 
 ```{r Formaldehyde}
 # `Formaldehyde` already tidy
+head(Formaldehyde)
 ```
 
 ## freeny
 
 ```{r freeny}
-
+head(freeny)
 ```
 
 ## freeny.x
 
 ```{r freeny.x}
-
+head(freeny.x)
 
 ```
 
 ## freeny.y
 
 ```{r freeny.y}
-
+head(freeny.y)
 
 ```
 
@@ -327,27 +341,32 @@ head(Harman74_tidy)
 ## Indometh
 ```{r Indometh}
 # 'Indometh' already tidy
+head(Indometh)
 ```
 
 ### infert
 ```{r infert}
 # 'infert' already tidy
+head(infert)
 ```
 
 ## InsectSprays
 ```{r InsectSprays}
 # `InsectSprays` already tidy
+head(InsectSprays)
 ```
 
 ## iris
 ```{r iris}
 # 'iris' is already tidy
+head(iris)
 ```
 
 ## iris3
 
 ```{r iris3}
 # 'iris3' is already tidy
+head(iris3)
 
 ```
 
@@ -419,6 +438,7 @@ Loblolly_tidy
 ## longley
 ```{r longley}
 # longley is already tidy
+head(longley)
 ```
 
 ## lynx
@@ -442,6 +462,7 @@ mdeaths_tidy
 ## morley
 ```{r morley}
 # morley is already tidy
+head(morley)
 ```
 
 ## mtcars
@@ -483,34 +504,40 @@ nottem_tidy
 ## npk
 ```{r npk}
 # npk is already tidy
+head(npk)
 ```
 
 ## occupationalStatus
 
 ```{r occupationalStatus}
 #?
+head(occupationalStatus)
 
 ```
 
 ## Orange
 ```{r Orange}
 # 'Orange' already tidy
+head(Orange)
 ```
 
 ## OrchardSprays
 ```{r OrchardSrays}
 # 'OrchardSprays' alreayd tidy
+head(OrchardSprays)
 ```
 
 ## PlantGrowth
 ```{r PlantGrowth}
 # 'PlantGrowth' already tidy
+head(PlantGrowth)
 ```
 
 ## precip
 
 ```{r precip}
 # how to get town names?
+head(precip)
 
 ```
 
@@ -526,21 +553,25 @@ presidents_tidy
 ## pressure
 ```{r pressure}
 # 'pressure' is already tidy
+head(pressure)
 ```
 
 ## Puromycin
 ```{r Puromycin}
 # 'Puromycin' is already tidy
+head(Puromycin)
 ```
 
 ## quakes
 ```{r quakes}
 # 'quakes' is already tidy
+head(quakes)
 ```
 
 ## randu
 ```{r randu}
 # 'randu' is already tidy
+head(randu)
 ```
 
 ## rivers
@@ -567,25 +598,27 @@ rock_tidy
 ## sleep
 ```{r sleep}
 # 'sleep' is already tidy
+head(sleep)
 ```
 
 ## stack.loss
 
 ```{r stack.loss}
-
+head(stack.loss)
 
 ```
 
 ## stack.x
 
 ```{r stack.x}
-
+head(stack.x)
 
 ```
 
 ## stackloss
 ```{r stackloss}
 # 'stackloss' already tidy
+head(stackloss)
 ```
 
 ## state.abb
@@ -688,6 +721,7 @@ swiss_tidy
 ## Theoph
 ```{r Theoph}
 # 'Theoph' is already tidy
+head(Theoph)
 ```
 
 ## Titanic
@@ -702,6 +736,7 @@ Titanic_tidy
 ## ToothGrowth
 ```{r ToothGrowth}
 # 'ToothGrowth' is already tidy
+head(ToothGrowth)
 ```
 
 ## treering
@@ -771,7 +806,7 @@ USArrests_tidy
 
 ```{r UScitiesD}
 # class dist
-
+head(UScitiesD)
 ```
 
 ## USJudgeRatings
@@ -815,16 +850,19 @@ VADeaths_tidy
 ## volcano
 ```{r volcano}
 #matrix of topographic info
+head(volcano)
 ```
 
 ## warpbreaks
 ```{r warpbreaks}
 # 'warpbreaks' is already tidy
+head(warpbreaks)
 ```
 
 ## women
 ```{r women}
 # 'women' is already tidy
+head(women)
 ```
 
 ## WorldPhones
